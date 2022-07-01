@@ -1,46 +1,33 @@
 export const navbar = [
     {
         id:"home",
-        name:"home"
+        name:"home",
+        url:"/home"
     },
     {
         id:"dishes",
-        name:"dishes"
+        name:"dishes",
+        url:"/dishes"
     },
     {
         id:"about",
-        name:"about"
+        name:"about",
+        url:"/about"
     },
     {
         id:"menu",
-        name:"menu"
+        name:"menu",
+        url:"/menu"
     },
     {
         id:"review",
-        name:"review"
+        name:"review",
+        url:"/review"
     },
     {
         id:"order",
-        name:"order"
+        name:"order",
+        url:"/order"
     }
 
-];
-
-export const icon = [
-  {
-    id: "menu_bars",
-    name: "fas fa-bars",
-  },
-  {
-    id: "search",
-    name: "fas fa-search",
-  },
-  {
-    id: "heart",
-    name: "fas fa-heart",
-  },
-  {
-    id:"cart",
-    name:"fas fa-shopping-cart"
-  }
 ];

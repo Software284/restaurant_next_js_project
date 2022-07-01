@@ -1,0 +1,24 @@
+.Icons i {
+  cursor: pointer;
+  margin-left: .5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  width: 4.5rem;
+  text-align: center;
+  font-size: 1.7rem;
+  color: var(--black);
+  border-radius: 50%;
+  background: #eee;
+}
+
+.Icons i:hover {
+  color: #fff;
+  background: var(--green);
+  -webkit-transform: rotate(360deg);
+          transform: rotate(360deg);
+}
+
+.Icons #menu-bars {
+  display: none;
+}
+/*# sourceMappingURL=Icons.module.css.map */
