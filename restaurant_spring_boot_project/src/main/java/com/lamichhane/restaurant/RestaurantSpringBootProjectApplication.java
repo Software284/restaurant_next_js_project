@@ -19,5 +19,7 @@ public class RestaurantSpringBootProjectApplication {
 		return new BCryptPasswordEncoder();
 		
 	}
+	
+	//Hello mother fucker
 
 }
