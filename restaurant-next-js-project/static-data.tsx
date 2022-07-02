@@ -60,3 +60,22 @@ export const products = [
     price: 20.5,
   },
 ];
+
+export const footer = [
+  {
+    title:"Locations",
+    item:["india","japan","russia","USA","france"]
+  },
+  {
+    title:"Quick Links",
+    item:["home","dishes","about","menu","review","order"]
+  },
+  {
+    title:"Contact Info",
+    item:["+977-9805214582","=977-9805214582","maheshlc@gmail.com","narayanstha-8, baglung","www.lamichhane.com"]
+  },
+  {
+    title:"Follow Us",
+    item:["facebook","twitter","instagram","linkdein"]
+  }
+];

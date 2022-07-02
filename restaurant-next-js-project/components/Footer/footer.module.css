@@ -1,0 +1,47 @@
+.Footer {
+  max-width: 1100px;
+  padding: 2rem 2%;
+  background: #eee;
+  margin: auto;
+}
+
+.Footer .BoxContainer {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(25rem, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+  gap: 1.5rem;
+}
+
+.Footer .BoxContainer .Box h3 {
+  padding: .5rem 0;
+  font-size: 2.5rem;
+  color: var(--black);
+}
+
+.Footer .BoxContainer .Box a {
+  display: block;
+  padding: .5rem 0;
+  font-size: 1.5rem;
+  color: var(--light-color);
+}
+
+.Footer .BoxContainer .Box a:hover {
+  color: var(--green);
+  text-decoration: underline;
+}
+
+.Footer .Credit {
+  text-align: center;
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  color: var(--black);
+  padding: .5rem;
+  padding-top: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.Footer .Credit span {
+  color: var(--green);
+}
+/*# sourceMappingURL=footer.module.css.map */
