@@ -4,8 +4,8 @@ import Auxiliary from '../hoc/Auxiliary';
 function IndexPageLayout(){
     return(
         <Auxiliary>
-            <Navigation/>
-            <Products/>
+            <Navigation />
+            <Products />
         </Auxiliary>
     );
 }

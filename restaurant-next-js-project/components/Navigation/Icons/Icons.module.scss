@@ -1,22 +1,44 @@
-.Icons i{
-    cursor: pointer;
-    margin-left: .5rem;
-    height:4.5rem;
-    line-height: 4.5rem;
-    width:4.5rem;
-    text-align: center;
-    font-size: 1.7rem;
-    color:var(--black);
-    border-radius: 50%;
-    background: #eee;
-}
+.Icon{
+    i.MenuBars{
+        display: none;
+    }
 
-.Icons i:hover{
-    color:#fff;
-    background: var(--green);
-    transform: rotate(360deg);
-}
+    i.Shopping{
+        position: relative;
 
-.Icons #menu-bars{
-    display: none;
+        .Badge{
+            position:absolute;
+            left:60%;
+            top:-10%;
+            width: 2.2rem;
+            height: 2.2rem;
+            line-height: 2.2rem;
+            display: inline-block;
+            color:white;
+            background-color:brown;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 1.3rem;
+        }
+    }
+
+    i{
+        display:inline-block;
+        cursor: pointer;
+        margin-left: .5rem;
+        height:4.5rem;
+        line-height: 4.5rem;
+        width:4.5rem;
+        text-align: center;
+        font-size: 1.7rem;
+        color:var(--black);
+        border-radius: 50%;
+        background: #eee;
+
+        &:hover{
+            color:#fff;
+            background: var(--green);
+            transform: rotate(360deg);
+        }
+    }
 }

@@ -7,18 +7,20 @@ interface Props{
 const Navbar = ({data}:Props) => {
     return (
       <nav className={classes.Navbar}>
-        {data.map((deta) => (
-          <a key={deta.id}>
-            <Link
-              href={{
-                pathname: `${deta.url}`,
-                query: {},
-              }}
-            >
-              {deta.name}
-            </Link>
-          </a>
-        ))}
+        <ul>
+          {data.map((deta) => (
+            <li key={deta.id}>
+              <Link
+                href={{
+                  pathname: `${deta.url}`,
+                  query: {},
+                }}
+              >
+                <a>{deta.name}</a>
+              </Link>
+            </li>
+          ))}
+        </ul>
       </nav>
     );
 }

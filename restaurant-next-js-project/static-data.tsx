@@ -2,12 +2,7 @@ export const navbar = [
     {
         id:"home",
         name:"home",
-        url:"/home"
-    },
-    {
-        id:"dishes",
-        name:"dishes",
-        url:"/dishes"
+        url:"/"
     },
     {
         id:"about",
@@ -15,19 +10,53 @@ export const navbar = [
         url:"/about"
     },
     {
-        id:"menu",
-        name:"menu",
-        url:"/menu"
+        id:"orders",
+        name:"orders",
+        url:"/orders"
     },
     {
-        id:"review",
-        name:"review",
-        url:"/review"
-    },
-    {
-        id:"order",
-        name:"order",
-        url:"/order"
+      id:"favorites",
+      name:"favorites",
+      url:"/favorites"
     }
 
+];
+
+export const products = [
+  {
+    img: "img/dish-1.png",
+    name: "Tasty Food",
+    ratings: 4,
+    price: 20.5,
+  },
+  {
+    img: "img/dish-2.png",
+    name: "Healthy Food",
+    ratings: 4,
+    price: 20.5,
+  },
+  {
+    img: "img/dish-3.png",
+    name: "Sweet Food",
+    ratings: 4,
+    price: 20.5,
+  },
+  {
+    img: "img/dish-4.png",
+    name: "Delicious Food",
+    ratings: 4,
+    price: 20.5,
+  },
+  {
+    img: "img/dish-5.png",
+    name: "Fry Food",
+    ratings: 4,
+    price: 20.5,
+  },
+  {
+    img: "img/dish-6.png",
+    name: "Chilly Food",
+    ratings: 4,
+    price: 20.5,
+  },
 ];

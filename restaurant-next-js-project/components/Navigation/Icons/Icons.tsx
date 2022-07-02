@@ -1,23 +1,23 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from './Icons.module.css';
-import {NavIcons} from '../../../models/NavIcons';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faBars,faSearch,faHeart,faShoppingCart} from '@fortawesome/free-solid-svg-icons';
+import { faBars,faSearch,faShoppingCart,faHeart } from "@fortawesome/free-solid-svg-icons";
 const Icons = () => {
-  return (
-    <div className={classes.Icons}>
-      <i>
-        <FontAwesomeIcon icon={faBars}></FontAwesomeIcon>
-      </i>
-      <i>
-        <FontAwesomeIcon icon={faSearch}></FontAwesomeIcon>
-      </i>
-      <i>
-        <FontAwesomeIcon icon={faHeart}></FontAwesomeIcon>
-      </i>
-      <i>
-        <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-      </i>
-    </div>
-  );
-};
+    return (
+      <div className={classes.Icon}>
+        <i className={classes.MenuBars}>
+          <FontAwesomeIcon icon={faBars} />
+        </i>
+        <i>
+          <FontAwesomeIcon icon={faSearch} />
+        </i>
+        <i className={classes.Shopping}>
+          <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
+          <span className={classes.Badge}>10</span>
+        </i>
+        <i>
+          <FontAwesomeIcon icon={faHeart} />
+        </i>
+      </div>
+    );
+}
 export default Icons;

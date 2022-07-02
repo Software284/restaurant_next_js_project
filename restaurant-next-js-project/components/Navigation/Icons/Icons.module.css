@@ -1,4 +1,28 @@
-.Icons i {
+.Icon i.MenuBars {
+  display: none;
+}
+
+.Icon i.Shopping {
+  position: relative;
+}
+
+.Icon i.Shopping .Badge {
+  position: absolute;
+  left: 60%;
+  top: -10%;
+  width: 2.2rem;
+  height: 2.2rem;
+  line-height: 2.2rem;
+  display: inline-block;
+  color: white;
+  background-color: brown;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 1.3rem;
+}
+
+.Icon i {
+  display: inline-block;
   cursor: pointer;
   margin-left: .5rem;
   height: 4.5rem;
@@ -11,14 +35,10 @@
   background: #eee;
 }
 
-.Icons i:hover {
+.Icon i:hover {
   color: #fff;
   background: var(--green);
   -webkit-transform: rotate(360deg);
           transform: rotate(360deg);
-}
-
-.Icons #menu-bars {
-  display: none;
 }
 /*# sourceMappingURL=Icons.module.css.map */

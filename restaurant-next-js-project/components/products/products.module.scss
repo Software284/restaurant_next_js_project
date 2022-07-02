@@ -1,0 +1,97 @@
+.Dishes{
+    text-align: center;
+    max-width: 1100px;
+    margin:auto;
+    padding-top: 5rem;
+
+    h1{
+        margin-bottom: 2rem;
+    }
+
+    .BoxContainer{
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(28rem, 1fr));
+        gap:1.5rem;
+
+        .Box{
+            padding:2.5rem;
+            background:#fff;
+            border-radius: .5rem;
+            border:.1rem solid rgba(0,0,0,.2);
+            box-shadow: var(--box-shadow);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+
+            &:hover .Heart{
+                right:1.5rem;
+            }
+
+            &:hover .Eye{
+                left:1.5rem;
+            }
+
+            .Heart,.Eye{
+                position: absolute;
+                top:1.5rem;
+                background:#eee;
+                border-radius: 50%;
+                height: 5rem;
+                width:5rem;
+                line-height: 5rem;
+                font-size: 2rem;
+                color:var(--black);
+
+                &:hover{
+                    background: var(--green);
+                    color:#fff;
+                }
+            }
+            .Heart{
+                right:-15rem;
+            }
+            .Eye{
+                left:-15rem;
+            }
+
+            img{
+                height:17rem;
+                margin:1rem 0;
+            }
+
+            h3{
+                color:var(--black);
+                font-size: 2.5rem;
+              }
+            .Stars{
+                padding:1rem 0;
+
+                i{
+                    font-size: 1.7rem;
+                    color:var(--green);
+                }
+            }
+            span{
+                color:var(--green);
+                font-weight: bolder;
+                margin-right: 1rem;
+                font-size: 2.5rem;
+            }
+            .Btn{
+                    margin-top: 1rem;
+                    display: inline-block;
+                    font-size: 1.7rem;
+                    color:#fff;
+                    background: var(--black);
+                    border-radius: .5rem;
+                    cursor: pointer;
+                    padding:.8rem 3rem;
+                    
+                    &:hover{
+                        background: var(--green);
+                        letter-spacing: .1rem;
+                    }
+            }
+        }
+    }
+}
