@@ -3,15 +3,17 @@ import classes from './products.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faEye,faStar } from '@fortawesome/free-solid-svg-icons';
-import {products} from '../../static-data';
 import {Product} from '../../models/Product';
-function Products(){
+interface Props {
+  allproduct: Product[];
+}
+function Products(props:any){
     return (
       <div className={classes.Dishes}>
         <h1>Popular Dishes</h1>
         <div className={classes.BoxContainer}>
             {
-                products.map((data:Product) => {
+                props.products.map((data:any) => {
                     return (
                       <div className={classes.Box} key={data.img}>
                         <a className={classes.Heart}>

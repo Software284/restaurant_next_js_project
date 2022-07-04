@@ -1,10 +1,14 @@
 
 import Products from '../components/products/products';
 import Auxiliary from '../hoc/Auxiliary';
-function IndexPageLayout(){
+import {Product} from '../models/Product';
+interface Props{
+    allproduct: Product[];
+}
+function IndexPageLayout(props:any){
     return(
         <Auxiliary>
-            <Products />
+            <Products products={props.products}/>
         </Auxiliary>
     );
 }
