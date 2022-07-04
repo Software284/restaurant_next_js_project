@@ -22,15 +22,16 @@ public class Product {
 	@Column(name="name")
 	private String name;
 	
+	@Column(name="img")
+	private String img;
 	
-	@Column(name="currentprice")
-	private double currentprice;
 	
-	@Column(name="previousprice")
-	private double previousprice;
+	@Column(name="ratings")
+	private int ratings ;
 	
-	@Column(name="pictureurl")
-	private String pictureurl;
+	
+	@Column(name="price")
+	private double price;
 	
 	
 	
@@ -39,25 +40,11 @@ public class Product {
 
 
 
-	public Product(String name, double price, double previousprice, String pictureurl) {
+	public Product(String name, String img, int ratings, double price) {
 		this.name = name;
-		this.currentprice = price;
-		this.previousprice = previousprice;
-		this.pictureurl = pictureurl;
-	}
-	
-	
-
-
-
-	public double getCurrentprice() {
-		return currentprice;
-	}
-
-
-
-	public void setCurrentprice(double currentprice) {
-		this.currentprice = currentprice;
+		this.img = img;
+		this.ratings = ratings;
+		this.price = price;
 	}
 
 
@@ -74,28 +61,38 @@ public class Product {
 
 
 
-
-
-	public double getPreviousprice() {
-		return previousprice;
+	public String getImg() {
+		return img;
 	}
 
 
 
-	public void setPreviousprice(double previousprice) {
-		this.previousprice = previousprice;
+	public void setImg(String img) {
+		this.img = img;
 	}
 
 
 
-	public String getPictureurl() {
-		return pictureurl;
+	public int getRatings() {
+		return ratings;
 	}
 
 
 
-	public void setPictureurl(String pictureurl) {
-		this.pictureurl = pictureurl;
+	public void setRatings(int ratings) {
+		this.ratings = ratings;
+	}
+
+
+
+	public double getPrice() {
+		return price;
+	}
+
+
+
+	public void setPrice(double price) {
+		this.price = price;
 	}
 
 
@@ -103,6 +100,12 @@ public class Product {
 	public int getId() {
 		return id;
 	}
+	
+	
+
+	
+
+
 	
 	
 	
