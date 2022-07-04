@@ -5,15 +5,15 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faEye,faStar } from '@fortawesome/free-solid-svg-icons';
 import {Product} from '../../models/Product';
 interface Props {
-  allproduct: Product[];
+  products: Product[];
 }
-function Products(props:any){
+function Products({products}:Props){
     return (
       <div className={classes.Dishes}>
         <h1>Popular Dishes</h1>
         <div className={classes.BoxContainer}>
             {
-                props.products.map((data:any) => {
+                products.map((data) => {
                     return (
                       <div className={classes.Box} key={data.img}>
                         <a className={classes.Heart}>

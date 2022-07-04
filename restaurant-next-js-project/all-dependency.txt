@@ -4,3 +4,6 @@ npm install --save @fortawesome/react-fontawesome
 npm install --save @fortawesome/free-solid-svg-icons
 npm install --save @fortawesome/free-brands-svg-icons
 npm install --save axios
+
+npm install --legacy-peer-deps
+npm install redux react-redux react-thunk @types/react-redux
