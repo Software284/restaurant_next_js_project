@@ -23,6 +23,13 @@
             overflow: hidden;
             text-align: center;
 
+            .ProductBottom{
+                display:flex;
+                justify-content: space-between;
+                align-items: center;
+                padding:10px;
+            }
+
             &:hover .Heart{
                 right:1.5rem;
             }

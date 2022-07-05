@@ -29,6 +29,19 @@
   text-align: center;
 }
 
+.Dishes .BoxContainer .Box .ProductBottom {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 10px;
+}
+
 .Dishes .BoxContainer .Box:hover .Heart {
   right: 1.5rem;
 }

@@ -1,6 +1,6 @@
-import { ActionTypes } from "./action-types";
+import { ActionTypes } from "../action-types/action-types";
 
-   interface DepositAction {
+interface DepositAction {
   type: ActionTypes.DEPOSIT;
   payload: number;
 }

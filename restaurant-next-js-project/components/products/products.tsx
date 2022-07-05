@@ -39,10 +39,12 @@ function Products({products}:Props){
                             <FontAwesomeIcon icon={faStar} />
                           </i>
                         </div>
-                        <span>{"$" + `${data.price}`}</span>
-                        <a href="#" className={classes.Btn}>
-                          add to cart
-                        </a>
+                        <div className={classes.ProductBottom}>
+                          <span>{"$" + `${data.price}`}</span>
+                          <a href="#" className={classes.Btn}>
+                            add to cart
+                          </a>
+                        </div>
                       </div>
                     );
                 })

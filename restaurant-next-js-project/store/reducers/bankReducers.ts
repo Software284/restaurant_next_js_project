@@ -1,7 +1,7 @@
-import * as actionTypes from './actions';
-import { Product } from '../models/Product';
-import {Action } from './actions';
-import {ActionTypes} from './action-types';
+import * as actionTypes from '../action/actions';
+import { Product } from '../../models/Product';
+import {Action } from '../action/actions';
+import {ActionTypes} from '../action-types/action-types';
 const initialState = 10;
 
 // const initialState = {
