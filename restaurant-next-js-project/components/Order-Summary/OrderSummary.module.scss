@@ -1,0 +1,31 @@
+.OrderSummary{
+    width:30%;
+    font-size: 14px;
+   
+
+    tbody 
+    {
+        tr{
+            // margin-bottom: 40px;
+
+            td{
+            &:nth-child(){
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        &:nth-child(even){
+            p{
+                padding:10px;
+            }
+        }
+        padding:10px;
+        }
+        
+    }
+
+    
+    }
+   
+}

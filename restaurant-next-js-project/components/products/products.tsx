@@ -27,7 +27,7 @@ function Products({products}:Props){
 
   
   const addDataToCard = (obj:Product) => {
-    addItem({id:obj.id,name:obj.name,price:obj.price,quantity:1});
+    addItem({id:obj.id,name:obj.name,price:obj.price,quantity:1,img:obj.img});
   }
 
     return (

@@ -18,6 +18,9 @@ const Icons = () => {
         <i className={classes.Shopping}>
           <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
           <span className={classes.Badge}>{list.carts.length}</span>
+          <div className={classes.CartModal}>
+            
+          </div>
         </i>
         <i>
           <FontAwesomeIcon icon={faHeart} />
