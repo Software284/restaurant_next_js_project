@@ -1,6 +1,6 @@
-export interface Product {
-  img: string;
-  name: string;
-  count:number,
-  price: number;
+export interface CartProduct {
+  id:number,
+  name:string,
+  price:number,
+  quantity:number
 }
