@@ -8,7 +8,6 @@ function IndexPageLayout(props:any){
     return (
       <div>
         <Products products={props.products} />
-        <OrderSummary/>
       </div>
     )
 }

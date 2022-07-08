@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import classes from './OrderSummary.module.css';
+import Button from '../UI/Button/Button';
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../store/reducers/rootReducers";
@@ -8,7 +9,7 @@ import { bindActionCreators } from "redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 
-function OrderSummary () {
+function OrderSummary (props:any) {
 
     const [price, setPrice] = useState<number>(0);
 
@@ -49,11 +50,9 @@ function OrderSummary () {
                 <>
                   <tr>
                     <td>
-                      <img
-                        src={data.img}
-                        style={{ width: "5rem", height: "5rem" }}
-                        alt=""
-                      />
+                      <div className={classes.ImageContainer}>
+                        <img src={data.img} alt=" Product Image" />
+                      </div>
                     </td>
                     <td>
                       <p>{data.name}</p>
@@ -76,9 +75,19 @@ function OrderSummary () {
                 </>
               );
             })}
-            <p>Total $ {price}</p>
           </tbody>
         </table>
+        <div className={classes.ModalFooter}>
+          <p>Total $ {price}</p>
+          <div className={classes.MyButtons}>
+            <Button btnType="Danger" clicked={props.modalClosed}>
+              CANCEL
+            </Button>
+            <Button btnType="Success" clicked={props.purchaseContinued}>
+              CONTINUE
+            </Button>
+          </div>
+        </div>
       </div>
     );
     
