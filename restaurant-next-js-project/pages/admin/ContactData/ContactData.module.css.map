@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,YAAY,CAAA;EACR,MAAM,EAAC,SAAS;EAChB,KAAK,EAAC,GAAG;EACT,UAAU,EAAE,MAAM;EAClB,UAAU,EAAE,cAAc;EAC1B,MAAM,EAAE,cAAc;EACtB,OAAO,EAAE,IAAI;EACb,UAAU,EAAE,UAAU;CAKzB;;AAZD,AASK,YATO,CASP,MAAM,CAAA;EACP,OAAO,EAAE,KAAK;CACf;;AAGH,MAAM,EAAC,SAAS,EAAE,KAAK;EACnB,AAAA,YAAY,CAAA;IACR,KAAK,EAAE,KAAK;GACf",
+    "sources": [
+        "ContactData.module.scss"
+    ],
+    "names": [],
+    "file": "ContactData.module.css"
+}

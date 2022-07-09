@@ -1,7 +1,5 @@
-import { Product } from '../models/Product';
 import Products from '../components/products/products';
-import Auxiliary from '../hoc/Auxiliary';
-import OrderSummary from '../components/Order-Summary/OrderSummary';
+import ContactData from '../pages/admin/ContactData/ContactData';
 
 
 function IndexPageLayout(props:any){
