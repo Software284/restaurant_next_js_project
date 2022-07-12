@@ -22,45 +22,6 @@ const Home = (props:any) => {
 
   return (
     <div>
-      {/* <div>
-        <ul>
-          {list.carts.map((data: CartProduct) => (
-            <li key={data.id}>
-              {data.id}:{data.name}:{data.price}:{data.quantity}
-            </li>
-          ))}
-        </ul>
-        <button
-          onClick={() =>
-            addItem({ id: 2, price: 200, name: "chaumin", quantity: 1 })
-          }
-          style={{ padding: "10px 20px", background: "red", margin: "10px" }}
-        >
-          AddItem
-        </button>
-        <button
-          onClick={() =>
-            addItem({ id: 3, price: 200, name: "momo", quantity: 1 })
-          }
-          style={{ padding: "10px 20px", background: "red", margin: "10px" }}
-        >
-          AddItem2
-        </button>
-        <button
-          onClick={() => removeItem(2)}
-          style={{ padding: "10px 20px", background: "red", margin: "10px" }}
-        >
-          WITHDRAW
-        </button>
-        <button
-          onClick={() =>
-            decreamentItem({ id: 2, price: 200, name: "chaumin", quantity: 1 })
-          }
-          style={{ padding: "10px 20px", background: "red", margin: "10px" }}
-        >
-          DECREAMENT
-        </button>
-      </div> */}
       <IndexPageLayout products={props.products} />
     </div>
   );
