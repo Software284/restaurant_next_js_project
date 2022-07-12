@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.lamichhane.restaurant.exception.classes.AddressNotFoundException;
 import com.lamichhane.restaurant.exception.classes.CartProductNotFoundException;
+import com.lamichhane.restaurant.exception.classes.CustomerNotFoundException;
 import com.lamichhane.restaurant.exception.classes.OrderNotFoundException;
 import com.lamichhane.restaurant.exception.classes.ProductNotFoundException;
 import com.lamichhane.restaurant.exception.classes.StandardRestErrorResponse;
@@ -61,6 +62,19 @@ public class RestaurantExceptionHandler  {
 						// Add an exception handler for ProductNotFoundException
 						@ExceptionHandler
 						public ResponseEntity<StandardRestErrorResponse> handleException(OrderNotFoundException exc) {
+				
+							StandardRestErrorResponse error = new StandardRestErrorResponse(
+																HttpStatus.NOT_FOUND.value(),
+																exc.getMessage(),
+																System.currentTimeMillis());
+							
+							
+							return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+						}
+						
+						// Add an exception handler for CustomerNotFoundException
+						@ExceptionHandler
+						public ResponseEntity<StandardRestErrorResponse> handleException(CustomerNotFoundException exc) {
 				
 							StandardRestErrorResponse error = new StandardRestErrorResponse(
 																HttpStatus.NOT_FOUND.value(),

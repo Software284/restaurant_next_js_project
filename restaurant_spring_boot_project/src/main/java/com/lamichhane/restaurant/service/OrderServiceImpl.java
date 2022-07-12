@@ -32,8 +32,9 @@ public class OrderServiceImpl implements OrderService{
 
 	@Override
 	@Transactional
-	public void saveOrder(Order theOrder) {
-		orderDAO.save(theOrder);
+	public Order saveOrder(Order theOrder) {
+		Order o = orderDAO.save(theOrder);
+		return o;
 	}
 
 	@Override

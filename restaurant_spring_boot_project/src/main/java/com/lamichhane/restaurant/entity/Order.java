@@ -1,12 +1,17 @@
 package com.lamichhane.restaurant.entity;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,85 +28,92 @@ public class Order {
 	@Column(name="id")
 	private int id;
 	
-	private CartProduct[] cartproduct;
+	@OneToMany(mappedBy="order",cascade = {CascadeType.PERSIST,CascadeType.MERGE,
+			CascadeType.DETACH,CascadeType.REFRESH})
+	private List<CartProduct> cartdata;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="customer_id")
+	private Customer customer;
 	
 	@Column(name="totalprice")
-	private double totalPrice;
+	private double totalprice;
 	
-	private Address address;
 	
-	@Column(name="gender")
-	private String gender;
+	
 	
 	
 	public Order() {
 	}
 
 
-	public Order(int orderId, CartProduct[] cartproduct, double totalPrice, Address address, String gender) {
-		super();
-		this.id = orderId;
-		this.cartproduct = cartproduct;
-		this.totalPrice = totalPrice;
-		this.address = address;
-		this.gender = gender;
+
+
+	public Order(List<CartProduct> cartdata, Customer customer, double totalprice, List<CartProduct> ingredients) {
+		this.cartdata = cartdata;
+		this.customer = customer;
+		this.totalprice = totalprice;
 	}
 
 
-	@Override
-	public String toString() {
-		return "Order [orderId=" + id + ", cartproduct=" + Arrays.toString(cartproduct) + ", totalPrice="
-				+ totalPrice + ", address=" + address + ", gender=" + gender + "]";
+
+
+
+	public List<CartProduct> getCartdata() {
+		return cartdata;
 	}
 
 
-	public int getOrderId() {
+
+
+	public void setCartdata(List<CartProduct> cartdata) {
+		this.cartdata = cartdata;
+	}
+
+
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+
+
+
+	public double getTotalprice() {
+		return totalprice;
+	}
+
+
+
+
+	public void setTotalprice(double totalprice) {
+		this.totalprice = totalprice;
+	}
+
+
+
+
+
+	public int getId() {
 		return id;
 	}
-
-
-	public void setOrderId(int orderId) {
-		this.id = orderId;
-	}
-
-
-	public CartProduct[] getCartproduct() {
-		return cartproduct;
-	}
-
-
-	public void setCartproduct(CartProduct[] cartproduct) {
-		this.cartproduct = cartproduct;
-	}
-
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-
-	public Address getAddress() {
-		return address;
-	}
-
-
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-
-
-	public String getGender() {
-		return gender;
-	}
-
-
-	public void setGender(String gender) {
-		this.gender = gender;
+	
+	
+	public void add(CartProduct tempCartProduct) {
+		if(cartdata == null) {
+			cartdata = new ArrayList<>();
+			
+		}
+		cartdata.add(tempCartProduct);
+		tempCartProduct.setOrder(this);
 	}
 	
 	
@@ -110,4 +122,15 @@ public class Order {
 	
 	
 	
+	
+
+
+
+
+	
+	
+	
+
+
+
 }

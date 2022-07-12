@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.lamichhane.restaurant.entity.CartProduct;
+import com.lamichhane.restaurant.entity.Customer;
 import com.lamichhane.restaurant.entity.Order;
-import com.lamichhane.restaurant.entity.Product;
+import com.lamichhane.restaurant.model.OrderDemo;
 import com.lamichhane.restaurant.service.AddressService;
 import com.lamichhane.restaurant.service.CartProductService;
 import com.lamichhane.restaurant.service.OrderService;
@@ -24,14 +26,18 @@ import com.lamichhane.restaurant.service.OrderService;
 @RequestMapping("/restaurant")
 public class OrdersController {
 	
+	
+	@Autowired
+	private OrderService orderService;
+	
 	@Autowired
 	private AddressService addressService;
 	
 	@Autowired
 	private CartProductService cartProductService;
 	
-	@Autowired
-	private OrderService orderService;
+//	@Autowired
+//	private CustomerService customerService;
 	
 	
 	@GetMapping("/order")
@@ -47,18 +53,35 @@ public class OrdersController {
 	
 	
 	@PostMapping("/order")
-	public ResponseEntity<Order> saveOrder(@RequestBody Order order) {
-		orderService.saveOrder(order);
-		return new ResponseEntity<>(order,HttpStatus.CREATED);
+	public ResponseEntity<Order> saveOrder(@RequestBody OrderDemo order) {
+		
+
+		List<CartProduct> ingredients = order.getIngredients();
+		double price = order.getTotalprice();
+		Customer cust = order.getCustomer();
+		
+		Order orderdemo = new Order();
+		orderdemo.setTotalprice(price);
+		orderdemo.setCustomer(cust);
+		
+		
+		for(CartProduct p : ingredients){
+			orderdemo.add(p);
+		}
+		
+		orderService.saveOrder(orderdemo);
+		
+		return new ResponseEntity<>(orderdemo,HttpStatus.CREATED);
+		
 	}
 	
-	@PutMapping("/product")
+	@PutMapping("/order")
 	public Order updateOrder(@RequestBody Order order) {
 		orderService.saveOrder(order);
 		return order;
 	}
 	
-	@DeleteMapping("/product/{productId}")
+	@DeleteMapping("/order/{orderId}")
 	public String deleteOrder(@PathVariable int orderId) {
 		Order order = orderService.getOrder(orderId);
 		orderService.deleteOrder(orderId);

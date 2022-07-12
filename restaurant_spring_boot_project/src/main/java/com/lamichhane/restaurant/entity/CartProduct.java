@@ -1,10 +1,13 @@
 package com.lamichhane.restaurant.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,56 +36,84 @@ public class CartProduct {
 	@Column(name="image")
 	private String image;
 	
+	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,
+			CascadeType.DETACH,CascadeType.REFRESH})
+	@JoinColumn(name="cart_id")
+    private Order order;
+	
 	
 	public CartProduct() {
 	}
-	
-	
-	
-	public CartProduct(int id, String name, double price, int quantity, String image) {
-		this.id = id;
+
+
+	public CartProduct(String name, double price, int quantity, String image, Order order) {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 		this.image = image;
+		this.order = order;
 	}
-	@Override
-	public String toString() {
-		return "CartProduct [id=" + id + ", name=" + name + ", price=" + price + ", quantity=" + quantity + ", image="
-				+ image + "]";
-	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
+
+
 	public String getName() {
 		return name;
 	}
+
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
+
 	public double getPrice() {
 		return price;
 	}
+
+
 	public void setPrice(double price) {
 		this.price = price;
 	}
+
+
 	public int getQuantity() {
 		return quantity;
 	}
+
+
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+
+
 	public String getImage() {
 		return image;
 	}
+
+
 	public void setImage(String image) {
 		this.image = image;
 	}
+
+
+	public Order getOrder() {
+		return order;
+	}
+
+
+	public void setOrder(Order order) {
+		this.order = order;
+	}
+
+
+	public int getId() {
+		return id;
+	}
 	
 	
+
+
+
 	
 	
 }

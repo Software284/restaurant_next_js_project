@@ -8,7 +8,7 @@ public interface OrderService {
 
 	public List<Order> getAllOrder();
 	   
-	public void saveOrder(Order theOrder);
+	public Order saveOrder(Order theOrder);
 
 	public Order getOrder(int id);
 

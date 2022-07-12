@@ -1,10 +1,12 @@
 package com.lamichhane.restaurant.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -30,46 +32,103 @@ public class Address {
 	@Column(name="district")
 	private String district;
 	
+	@OneToOne(mappedBy="address",cascade=CascadeType.ALL)
+	private Customer customer;
+	
+	
+	
 	
 	
 	public Address() {
 		
 	}
-	public Address(String street, int zipcode, String country) {
+
+
+
+
+
+	public Address(String street, int zipcode, String district, Customer customer) {
 		this.street = street;
 		this.zipcode = zipcode;
-		this.district = country;
+		this.district = district;
+		this.customer = customer;
 	}
-	@Override
-	public String toString() {
-		return "Address [street=" + street + ", zipcode=" + zipcode + ", district=" + district + "]";
-	}
+
+
+
+
+
 	public String getStreet() {
 		return street;
 	}
+
+
+
+
+
 	public void setStreet(String street) {
 		this.street = street;
 	}
+
+
+
+
+
 	public int getZipcode() {
 		return zipcode;
 	}
+
+
+
+
+
 	public void setZipcode(int zipcode) {
 		this.zipcode = zipcode;
 	}
-	public String getCountry() {
+
+
+
+
+
+	public String getDistrict() {
 		return district;
 	}
-	public void setCountry(String country) {
-		this.district = country;
+
+
+
+
+
+	public void setDistrict(String district) {
+		this.district = district;
 	}
+
+
+
+
+
+	public Customer getCustomer() {
+		return customer;
+	}
+
+
+
+
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+
+
+
+
 	public int getId() {
 		return id;
 	}
 	
 	
-	
-	
-	
-	
 
+
+
+	
 }
