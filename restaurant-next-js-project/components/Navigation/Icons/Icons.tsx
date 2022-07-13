@@ -4,7 +4,7 @@ import { useState } from "react";
 import {useSelector } from "react-redux";
 import { faBars,faSearch,faShoppingCart,faHeart } from "@fortawesome/free-solid-svg-icons";
 import { State } from "../../../store/reducers/rootReducers";
-import OrderSummary from "../../Order-Summary/OrderSummary";
+import OrderSummary from "../../../containers/Order-Summary/OrderSummary";
 import Modal from "../../UI/Modal/Modal";
 const Icons = () => {
 

@@ -1,25 +1,29 @@
 export const navbar = [
-    {
-        id:"home",
-        name:"home",
-        url:"/"
-    },
-    {
-        id:"about",
-        name:"about",
-        url:"/about"
-    },
-    {
-        id:"orders",
-        name:"orders",
-        url:"/orders"
-    },
-    {
-      id:"favorites",
-      name:"favorites",
-      url:"/favorites"
-    }
-
+  {
+    id: "home",
+    name: "home",
+    url: "/",
+  },
+  {
+    id: "about",
+    name: "about",
+    url: "/about",
+  },
+  {
+    id: "orders",
+    name: "orders",
+    url: "/orders",
+  },
+  {
+    id: "favorites",
+    name: "favorites",
+    url: "/favorites",
+  },
+  {
+    id: "admin",
+    name: "admin",
+    url: "/admin",
+  },
 ];
 
 export const products = [

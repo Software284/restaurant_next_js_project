@@ -1,7 +1,7 @@
 import IndexPageLayout from "../layout/IndexPageLayout";
 import { getAllProducts } from "../helpers/products-api-utils";
 import {Product} from '../models/Product';
-import { CartProduct } from "../models/CartProduct";
+import { CartProduct } from "../models/classes/CartProduct";
 
 import {useDispatch,useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';

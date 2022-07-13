@@ -1,4 +1,4 @@
-import { CartProduct } from "../../models/CartProduct";
+import { CartProduct } from "../../models/classes/CartProduct";
 import {CartAction} from '../actions/actions';
 import {ActionTypes} from '../actions/action-types';
 interface DefaultStateI {

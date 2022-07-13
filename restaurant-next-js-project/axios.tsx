@@ -1,5 +1,5 @@
 import axios from 'axios';
-const instance = axios.create({
+const Axios = axios.create({
   baseURL: "http://localhost:8080/restaurant/",
 });
-export default axios;
+export default Axios;

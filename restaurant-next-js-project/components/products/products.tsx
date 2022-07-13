@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faEye,faStar } from '@fortawesome/free-solid-svg-icons';
 import {Product} from '../../models/Product';
+import { CartProduct } from '../../models/classes/CartProduct';
 
 import { useDispatch, useSelector } from "react-redux";
 import * as ActionCreators from "../../store/actions/action-creators";
@@ -27,7 +28,8 @@ function Products({products}:Props){
 
   
   const addDataToCard = (obj:Product) => {
-    addItem({id:obj.id,name:obj.name,price:obj.price,quantity:1,img:obj.img});
+    const pro = new CartProduct(obj.id,obj.name,obj.price,1,obj.img);
+    addItem(pro);
   }
 
     return (

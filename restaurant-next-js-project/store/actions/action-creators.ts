@@ -1,7 +1,7 @@
 import { ActionTypes } from "./action-types";
 import { Dispatch } from "redux";
 import { CartAction } from "./actions";
-import { CartProduct } from "../../models/CartProduct";
+import { CartProduct } from "../../models/classes/CartProduct";
 
 export const addItem = (item:CartProduct) => {
     return (dispatch:Dispatch<CartAction>) => {

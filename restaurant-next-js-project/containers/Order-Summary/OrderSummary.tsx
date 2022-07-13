@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import classes from './OrderSummary.module.css';
-import Button from '../UI/Button/Button';
+import Button from '../../components/UI/Button/Button';
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../store/reducers/rootReducers";
