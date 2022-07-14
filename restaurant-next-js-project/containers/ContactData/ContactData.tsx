@@ -1,16 +1,23 @@
 import classes from './ContactData.module.css';
-import Button from '../../../components/UI/Button/Button';
+import Button from '../../components/UI/Button/Button';
 import React, { useState } from 'react';
 import { useRouter } from "next/router";
-import Input from "../../../components/UI/Input/Input";
+import Input from "../../components/UI/Input/Input";
 import { useSelector } from "react-redux";
-import { State } from "../../../store/reducers/rootReducers";
-import Spinner from '../../../components/UI/Spinner/Spinner';
-import Axios from "../../../axios";
-import {Address} from '../../../models/classes/Address';
-import { Customer } from '../../../models/classes/Customer';
+import { State } from "../../store/reducers/rootReducers";
+import Spinner from '../../components/UI/Spinner/Spinner';
+import Axios from "../../axios";
+import {Address} from '../../models/classes/Address';
+import { Customer } from '../../models/classes/Customer';
+import { Order } from '../../models/classes/Order';
+import { DemoCartProduct } from '../../models/classes/DemoCartProduct';
 
-const ContactData = (props:any) => {
+interface Props{
+  click: (event:any) => void;
+}
+
+
+const ContactData : React.FC<Props> = (props) => {
 
   const router = useRouter();
 
@@ -97,12 +104,21 @@ const ContactData = (props:any) => {
     for(let formElementIdentifier in MyForm){
       formData[formElementIdentifier] = MyForm[formElementIdentifier].value;
     }
-    const ings = list.carts;
+
+    const data:DemoCartProduct[] = [];
+    list.carts.map((deta) => {
+      const d = new DemoCartProduct(deta.getName,deta.price,deta.quantity,deta.image);
+      data.push(d);
+    })
+
+
     const add = new Address(formData.street,formData.zipcode,formData.district);
     const customer = new Customer(formData.name,formData.email,formData.gender,add);
-    console.log("Fuck you="+JSON.parse(JSON.stringify(customer)));
+    
+    
+
     const order = {
-      ingredients:ings,
+      ingredients:data,
       totalprice: 270,
       customer:customer,
     };
@@ -110,25 +126,24 @@ const ContactData = (props:any) => {
 
 
   Axios
-    .post("order", order)
+    .post<Order>("order", order)
     .then((response) => {
       setLoading(false);
-      console.log(response);
-      setMyForm({
-        name: "",
-        email: "",
-        address: { street: "", postalCode: "" },
-      });
-      router.replace("/");
+      // setMyForm({
+      //   name: "",
+      //   email: "",
+      //   address: { street: "", postalCode: "" },
+      // });
     })
     .catch((error) => {
       setLoading(false);
-      setMyForm({
-        name: "",
-        email: "",
-        address: { street: "", postalCode: "" },
-      });
+      // setMyForm({
+      //   name: "",
+      //   email: "",
+      //   address: { street: "", postalCode: "" },
+      // });
     });
+
 
 }
 
@@ -168,7 +183,7 @@ const ContactData = (props:any) => {
           />
          ))}
          
-         <Button btnType="Success">
+         <Button btnType="Success" clicked={props.click}>
            Order
          </Button>
        </form>

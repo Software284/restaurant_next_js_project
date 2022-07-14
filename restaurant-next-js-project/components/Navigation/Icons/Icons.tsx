@@ -6,10 +6,15 @@ import { faBars,faSearch,faShoppingCart,faHeart } from "@fortawesome/free-solid-
 import { State } from "../../../store/reducers/rootReducers";
 import OrderSummary from "../../../containers/Order-Summary/OrderSummary";
 import Modal from "../../UI/Modal/Modal";
+import ContactData from "../../../containers/ContactData/ContactData";
 const Icons = () => {
 
   const [modal, setModal] = useState(false);
   const list = useSelector((state: State) => state.cartreducer);
+
+  const [switching, setSwitching] = useState<boolean>(false);
+
+
 
   const modalClosedHandler = () => {
     setModal(false);
@@ -19,10 +24,32 @@ const Icons = () => {
     setModal(true);
   }
 
+  const purchaseContinuedHandler = () => {
+    setSwitching(!switching);
+  }
+
+
+  let modalData = {};
+  if(switching){
+    modalData = <ContactData click = {modalClosedHandler}/>
+  }
+  else {
+    modalData = (
+      <OrderSummary
+        modalClosed={modalClosedHandler}
+        purchaseContinued={purchaseContinuedHandler}
+      />
+    );
+  }
+
     return (
       <>
         <Modal show={modal} modalClosed={modalClosedHandler}>
-          <OrderSummary modalClosed = {modalClosedHandler}/>
+          {list.carts.length > 0 ? (
+            modalData
+          ) : (
+            <p style={{ fontSize: "20px" }}>Your Cart is Empty</p>
+          )}
         </Modal>
         <div className={classes.Icon}>
           <i className={classes.MenuBars}>
@@ -33,7 +60,9 @@ const Icons = () => {
           </i>
           <i className={classes.Shopping} onClick={modalOpenHandler}>
             <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-            <span className={classes.Badge}>{list.carts.length}</span>
+            {list.carts.length >
+              0 ? (<span className={classes.Badge}>{list.carts.length}</span>): ""
+            }
             <div className={classes.CartModal}></div>
           </i>
           <i>

@@ -9,7 +9,12 @@ import { bindActionCreators } from "redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons'
 
-function OrderSummary (props:any) {
+interface Props{
+  modalClosed: () => void;
+  purchaseContinued: () => void;
+}
+
+function OrderSummary (props:Props) {
 
     const [price, setPrice] = useState<number>(0);
 
@@ -51,7 +56,7 @@ function OrderSummary (props:any) {
                   <tr>
                     <td>
                       <div className={classes.ImageContainer}>
-                        <img src={data.img} alt=" Product Image" />
+                        <img src={data.image} alt=" Product Image" />
                       </div>
                     </td>
                     <td>

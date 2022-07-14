@@ -4,6 +4,7 @@ import classes from './Button.module.css';
 interface ButtonProps{
     btnType: string;
     disabled?:boolean;
+    clicked: (event:any) => void;
 }
 
 const button : React.FC<ButtonProps> = (props) =>
@@ -12,7 +13,7 @@ const button : React.FC<ButtonProps> = (props) =>
       <button
         disabled={props.disabled}
         className={[classes.Button, classes[props.btnType]].join(" ")}
-        // onClick={(event) =>props.clicked(event)}
+        onClick={(event) => props.clicked(event)}
       >
         {props.children}
       </button>

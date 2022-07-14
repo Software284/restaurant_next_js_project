@@ -26,10 +26,12 @@ export const cartreducer = (state:DefaultStateI = INIT_STATE, action:CartAction)
           carts: [...state.carts],
         };
       } else {
-        const temp = { ...action.payload, qnty: 1 };
+        // const temp = { ...action.payload, qnty: 1 };
+        const cart = action.payload;
+        cart.setQuantity = 1;
         return {
           ...state,
-          carts: [...state.carts, temp],
+          carts: [...state.carts, cart],
         };
       }
 

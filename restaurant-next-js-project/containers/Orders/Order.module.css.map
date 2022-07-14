@@ -1,6 +1,6 @@
 {
     "version": 3,
-    "mappings": "",
+    "mappings": "AAAA,AAAA,gBAAgB,CAAA;EACZ,SAAS,EAAE,IAAI;EACf,MAAM,EAAC,IAAI;CACd",
     "sources": [
         "Order.module.scss"
     ],

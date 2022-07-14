@@ -1,12 +1,12 @@
 export class CartProduct {
-  id?:number;
+  id:number;
   name:string;
   price:number;
   quantity:number;
-  image:string
+  image:string;
 
   constructor(id:number,name:string,price:number,quantity:number,image:string){
-    this.id = id;
+    this.id= id;
     this.name=name;
     this.price=price;
     this.quantity=quantity;
@@ -27,5 +27,21 @@ export class CartProduct {
   }
   get getImage(){
     return this.image;
+  }
+  set setId(id:number){
+    this.id = id;
+  }
+  set setName(name:string){
+    this.name=name;
+  }
+  set setPrice(price:number){
+    this.price = price;
+  }
+
+  set setQuantity(quantity:number){
+    this.quantity =quantity;
+  }
+  set setImage(image:string){
+    this.image = image;
   }
 }

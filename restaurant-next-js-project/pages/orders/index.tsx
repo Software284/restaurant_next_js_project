@@ -1,6 +1,7 @@
+import OrdersPageLayout from "../../layout/OrdersPageLayout";
 const Orders = () => {
     return(
-        <h1>Orders Page</h1>
+        <OrdersPageLayout/>
     );
 }
 export default Orders;

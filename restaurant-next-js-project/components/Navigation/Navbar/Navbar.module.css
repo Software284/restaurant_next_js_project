@@ -31,4 +31,8 @@
   background-color: #04AA6D;
   color: #ccc;
 }
+
+.Navbar ul li a:active {
+  background: red;
+}
 /*# sourceMappingURL=Navbar.module.css.map */

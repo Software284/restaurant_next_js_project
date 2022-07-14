@@ -1,0 +1,11 @@
+.Order {
+  width: 80%;
+  border: 1px solid #eee;
+  -webkit-box-shadow: 0 2px 3px #ccc;
+          box-shadow: 0 2px 3px #ccc;
+  padding: 10px;
+  margin: 10px auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+/*# sourceMappingURL=Order.module.css.map */

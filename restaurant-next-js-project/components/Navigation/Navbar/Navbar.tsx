@@ -4,11 +4,11 @@ import Link from 'next/link';
 interface Props{
     data:NavItem[];
 }
-const Navbar = ({data}:Props) => {
+const Navbar: React.FC<Props> = (props) => {
     return (
       <nav className={classes.Navbar}>
         <ul>
-          {data.map((deta) => (
+          {props.data.map((deta) => (
             <li key={deta.id}>
               <Link
                 href={{

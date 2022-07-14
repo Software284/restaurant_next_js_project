@@ -4,3 +4,4 @@ const OrdersPageLayout = () => {
         <Orders/>
     );
 }
+export default OrdersPageLayout;

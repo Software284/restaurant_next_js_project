@@ -19,11 +19,6 @@ export const navbar = [
     name: "favorites",
     url: "/favorites",
   },
-  {
-    id: "admin",
-    name: "admin",
-    url: "/admin",
-  },
 ];
 
 export const products = [
