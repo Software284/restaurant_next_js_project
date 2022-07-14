@@ -21,6 +21,7 @@ import com.lamichhane.restaurant.model.OrderDemo;
 import com.lamichhane.restaurant.service.AddressService;
 import com.lamichhane.restaurant.service.CartProductService;
 import com.lamichhane.restaurant.service.OrderService;
+import com.lamichhane.restaurant.success.classes.StandardRestSuccessResponse;
 
 @RestController
 @RequestMapping("/restaurant")
@@ -53,13 +54,13 @@ public class OrdersController {
 	
 	
 	@PostMapping("/order")
-	public ResponseEntity<Order> saveOrder(@RequestBody OrderDemo order) {
+	public ResponseEntity<?> saveOrder(@RequestBody OrderDemo order) {
 		
 
 		List<CartProduct> ingredients = order.getIngredients();
 		double price = order.getTotalprice();
 		Customer cust = order.getCustomer();
-		
+
 		Order orderdemo = new Order();
 		orderdemo.setTotalprice(price);
 		orderdemo.setCustomer(cust);
@@ -71,7 +72,12 @@ public class OrdersController {
 		
 		orderService.saveOrder(orderdemo);
 		
-		return new ResponseEntity<>(orderdemo,HttpStatus.CREATED);
+		StandardRestSuccessResponse response = new StandardRestSuccessResponse();
+		response.setMessage("Order Saved Successfully");
+		response.setStatus("success");
+		response.setTimeStamp(System.currentTimeMillis());
+		
+		return new ResponseEntity<>(response,HttpStatus.CREATED);
 		
 	}
 	

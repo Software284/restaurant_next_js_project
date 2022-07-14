@@ -28,7 +28,7 @@ public class CartProduct {
 	private String name;
 	
 	@Column(name="price")
-	private double price;
+	private int price;
 	
 	@Column(name="quantity")
 	private int quantity;
@@ -46,12 +46,11 @@ public class CartProduct {
 	}
 
 
-	public CartProduct(String name, double price, int quantity, String image, Order order) {
+	public CartProduct(String name, int price, int quantity, String image) {
 		this.name = name;
 		this.price = price;
 		this.quantity = quantity;
 		this.image = image;
-		this.order = order;
 	}
 
 
@@ -71,7 +70,7 @@ public class CartProduct {
 	}
 
 
-	public void setPrice(double price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 
