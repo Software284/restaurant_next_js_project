@@ -1,6 +1,6 @@
 import classes from './ContactData.module.css';
 import Button from '../../components/UI/Button/Button';
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { useRouter } from "next/router";
 import Input from "../../components/UI/Input/Input";
 import { useSelector } from "react-redux";
@@ -9,7 +9,7 @@ import Spinner from '../../components/UI/Spinner/Spinner';
 import Axios from "../../axios";
 import {Address} from '../../models/classes/Address';
 import { Customer } from '../../models/classes/Customer';
-import { Order } from '../../models/classes/Order';
+import { OrderDemo } from '../../models/classes/OrderDemo';
 import { DemoCartProduct } from '../../models/classes/DemoCartProduct';
 
 interface Props{
@@ -26,6 +26,13 @@ const ContactData : React.FC<Props> = (props) => {
   const [loading,setLoading] = useState<boolean>(false);
 
   const [price, setPrice] = useState<number>(0);
+
+  useEffect(() => {
+    total();
+  }, []);
+
+ 
+
 
   const [MyForm, setMyForm]:any = useState({
       name: {
@@ -91,9 +98,6 @@ const ContactData : React.FC<Props> = (props) => {
    });
  }
 
-  
-
-
 
 
 
@@ -101,6 +105,7 @@ const ContactData : React.FC<Props> = (props) => {
     event.preventDefault();
     setLoading(true);
     const formData:any = {};
+
     for(let formElementIdentifier in MyForm){
       formData[formElementIdentifier] = MyForm[formElementIdentifier].value;
     }
@@ -114,20 +119,17 @@ const ContactData : React.FC<Props> = (props) => {
 
     const add = new Address(formData.street,formData.zipcode,formData.district);
     const customer = new Customer(formData.name,formData.email,formData.gender,add);
-    
-    
+    console.log("Price="+price);
+    const or = new OrderDemo(price,data,customer);
 
-    const order = {
-      ingredients:data,
-      totalprice: 270,
-      customer:customer,
-    };
+    const orderdemo = or;
 
 
 
   Axios
-    .post<Order>("order", order)
+    .post<OrderDemo>("order", orderdemo)
     .then((response) => {
+      console.log("Success");
       setLoading(false);
       // setMyForm({
       //   name: "",

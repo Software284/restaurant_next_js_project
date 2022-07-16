@@ -1,29 +1,19 @@
-import { Address } from "./Address";
-import { DemoCartProduct } from "./DemoCartProduct";
-import { Customer } from "./Customer";
-export class Order {
-  id:number;
+import {Address} from './Address';
+import {DemoCartProduct} from './DemoCartProduct';
+import { Customer } from './Customer';
+export class OrderDemo {
   totalprice: number;
   ingredients: DemoCartProduct[];
   customer: Customer;
 
   constructor(
-    id:number,
     totalprice: number,
     ingredients: DemoCartProduct[],
     customer: Customer
   ) {
-    this.id = id;
     this.totalprice = totalprice;
     this.ingredients = ingredients;
     this.customer = customer;
-  }
-
-  set setId(id:number){
-    this.id = id;
-  }
-  get getId(){
-    return this.id;
   }
 
   set setTotalprice(totalprice: number) {

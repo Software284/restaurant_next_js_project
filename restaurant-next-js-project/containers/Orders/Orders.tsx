@@ -11,10 +11,9 @@ const Orders = () => {
     useEffect(() => {
         Axios.get<Order>("/order")
         .then(res => {
-            // console.log(res.data);
             setLoading(false);
             setOrders(res.data);
-            console.log(orders?.totalprice);
+            console.log(orders?.getId);
         })
         .catch(err => {
             setLoading(false);
