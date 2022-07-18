@@ -10,9 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lamichhane.restaurant.dao.CartProductDAO;
-import com.lamichhane.restaurant.entity.Address;
 import com.lamichhane.restaurant.entity.CartProduct;
 import com.lamichhane.restaurant.exception.classes.AddressNotFoundException;
+import com.lamichhane.restaurant.exception.classes.CartProductNotFoundException;
 
 
 
@@ -52,5 +52,7 @@ public class CartProductServiceImpl implements CartProductService{
 	public void deleteCartProduct(int id) {
 		cartProductDAO.deleteById(id);
 	}
+
+	
 	
 }

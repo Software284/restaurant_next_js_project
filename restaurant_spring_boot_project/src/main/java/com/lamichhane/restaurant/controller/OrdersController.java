@@ -20,6 +20,7 @@ import com.lamichhane.restaurant.entity.Order;
 import com.lamichhane.restaurant.model.OrderDemo;
 import com.lamichhane.restaurant.service.AddressService;
 import com.lamichhane.restaurant.service.CartProductService;
+import com.lamichhane.restaurant.service.CustomerService;
 import com.lamichhane.restaurant.service.OrderService;
 import com.lamichhane.restaurant.success.classes.StandardRestSuccessResponse;
 
@@ -37,13 +38,15 @@ public class OrdersController {
 	@Autowired
 	private CartProductService cartProductService;
 	
-//	@Autowired
-//	private CustomerService customerService;
+	@Autowired
+	private CustomerService customerService;
 	
 	
 	@GetMapping("/order")
 	public List<Order> getAllOrder() {
-		return orderService.getAllOrder();
+      List<Order> list = orderService.getAllOrder();
+      System.out.println(list.get(0).getCartdata().toString());
+      return list;
 	}
 	
 	@GetMapping("/order/{orderId}")
@@ -58,7 +61,7 @@ public class OrdersController {
 		
 
 		List<CartProduct> ingredients = order.getIngredients();
-		double price = order.getTotalprice();
+		int price = order.getTotalprice();
 		Customer cust = order.getCustomer();
 
 		Order orderdemo = new Order();

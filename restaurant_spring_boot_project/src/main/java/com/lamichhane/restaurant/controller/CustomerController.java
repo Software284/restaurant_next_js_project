@@ -10,14 +10,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.lamichhane.restaurant.entity.Customer;
 import com.lamichhane.restaurant.service.CustomerService;
+
+@RestController
+@RequestMapping("/restaurant")
 public class CustomerController {
 	
 	@Autowired
 	private CustomerService customerService;
 	
-	/* Product API request processing */
 	
 	@GetMapping("/customer")
 	public List<Customer> getAllCustomer() {

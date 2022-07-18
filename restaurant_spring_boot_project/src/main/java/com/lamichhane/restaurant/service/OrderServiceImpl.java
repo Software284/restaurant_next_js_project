@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lamichhane.restaurant.dao.OrderDAO;
-import com.lamichhane.restaurant.entity.Address;
 import com.lamichhane.restaurant.entity.Order;
 import com.lamichhane.restaurant.exception.classes.AddressNotFoundException;
 

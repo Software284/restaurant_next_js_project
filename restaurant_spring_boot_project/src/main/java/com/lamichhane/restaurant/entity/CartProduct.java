@@ -11,6 +11,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name="food_cartproduct")
 public class CartProduct {
@@ -39,6 +44,7 @@ public class CartProduct {
 	@ManyToOne(cascade = {CascadeType.PERSIST,CascadeType.MERGE,
 			CascadeType.DETACH,CascadeType.REFRESH})
 	@JoinColumn(name="cart_id")
+	@JsonBackReference
     private Order order;
 	
 	
@@ -52,6 +58,8 @@ public class CartProduct {
 		this.quantity = quantity;
 		this.image = image;
 	}
+	
+	
 
 
 
@@ -92,6 +100,10 @@ public class CartProduct {
 
 	public void setImage(String image) {
 		this.image = image;
+	}
+	
+	public void setMyOrder(Order order) {
+		this.order = order;
 	}
 
 

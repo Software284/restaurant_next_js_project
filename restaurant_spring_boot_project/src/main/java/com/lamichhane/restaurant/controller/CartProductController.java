@@ -33,8 +33,8 @@ public class CartProductController {
 	}
 	
 	@GetMapping("/cartproduct/{cartproudctId}")
-	public CartProduct getCartProduct(@PathVariable int cartproductId) {
-		CartProduct cart_product = cartProductService.getCartProduct(cartproductId);
+	public CartProduct getCartProduct(@PathVariable int cartproudctId) {
+		CartProduct cart_product = cartProductService.getCartProduct(cartproudctId);
 		return cart_product;
 	}
 	

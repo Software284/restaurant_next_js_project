@@ -16,6 +16,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 
 @Entity
 @Table(name="food_order")
@@ -29,9 +33,10 @@ public class Order {
 	@Column(name="id")
 	private int id;
 	
-	@OneToMany(mappedBy="order",cascade = {CascadeType.PERSIST,CascadeType.MERGE,
-			CascadeType.DETACH,CascadeType.REFRESH})
+	@OneToMany(mappedBy="order",cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JsonManagedReference
 	private List<CartProduct> cartdata;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="customer_id")
@@ -114,7 +119,7 @@ public class Order {
 			
 		}
 		cartdata.add(tempCartProduct);
-//		tempCartProduct.setOrder(this);
+		tempCartProduct.setMyOrder(this);
 	}
 	
 	

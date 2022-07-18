@@ -8,7 +8,7 @@ import com.lamichhane.restaurant.entity.Customer;
 public class  OrderDemo {
 	
 	private List<CartProduct> ingredients;
-	private double totalprice;
+	private int totalprice;
 	private Customer customer;
 	
 	
@@ -16,7 +16,7 @@ public class  OrderDemo {
 	}
 
 
-	public OrderDemo(List<CartProduct> ingredients, double totalprice, Customer customer) {
+	public OrderDemo(List<CartProduct> ingredients, int totalprice, Customer customer) {
 		this.ingredients = ingredients;
 		this.totalprice = totalprice;
 		this.customer = customer;
@@ -39,12 +39,12 @@ public class  OrderDemo {
 	}
 
 
-	public double getTotalprice() {
+	public int getTotalprice() {
 		return totalprice;
 	}
 
 
-	public void setTotalprice(double totalprice) {
+	public void setTotalprice(int totalprice) {
 		this.totalprice = totalprice;
 	}
 
