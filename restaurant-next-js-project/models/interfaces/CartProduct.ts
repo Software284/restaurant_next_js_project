@@ -1,3 +1,5 @@
+import { Order } from "./Order";
+
 export interface CartProduct {
   id:number;
   name:string;
