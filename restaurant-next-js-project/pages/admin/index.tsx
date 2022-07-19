@@ -54,6 +54,7 @@ const AdminPage = (props:any) => {
  }
 
  function inputChangedHandler(event: any, inputIdentifier: any) {
+    console.log(event.target.value);
    const updatedForm = {
      ...ProductForm,
    };
@@ -88,7 +89,7 @@ const AdminPage = (props:any) => {
  }
     return (
       <div className={classes.ContactData}>
-        <h4>Enter Your Contact Data</h4>
+        <h4>Enter Your Product Data</h4>
         {form}
       </div>
     );

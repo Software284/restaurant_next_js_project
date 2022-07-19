@@ -6,21 +6,35 @@ interface Props {
     elementType:string;
     elementConfig:any;
     value:string;
+    invalid:boolean;
+    shouldValidate:boolean;
+    touched:boolean;
     changed: (e:any) => void;
 }
 const Input : React.FC<Props> = (props) => {
 
     let inputElement:any = null;
+    const inputClasses = [classes.InputElement];
+
+    if(props.invalid && props.shouldValidate && props.touched){
+      inputClasses.push(classes.Invalid);
+    }
 
     switch(props.elementType){
         case 'input':
-            inputElement = <input {...props.elementConfig} className={classes.InputElement} onChange={props.changed} />;
+            inputElement = (
+              <input
+                {...props.elementConfig}
+                className={inputClasses.join(' ')}
+                onChange={props.changed}
+              />
+            );
             break;
         case 'textarea':
             inputElement = (
               <textarea
                 {...props.elementConfig}
-                className={classes.InputElement}
+                className={inputClasses.join(' ')}
                 onChange={props.changed}
               />
             );
@@ -28,7 +42,7 @@ const Input : React.FC<Props> = (props) => {
         case 'select':
             inputElement = (
               <select
-                className={classes.InputElement}
+                className={inputClasses.join(' ')}
                 value={props.value}
                 onChange={props.changed}
               >
@@ -44,7 +58,7 @@ const Input : React.FC<Props> = (props) => {
             inputElement = (
               <input
                 {...props.elementConfig}
-                className={classes.InputElement}
+                className={inputClasses.join(' ')}
                 onChange={props.changed}
               />
             );

@@ -27,6 +27,8 @@ const ContactData : React.FC<Props> = (props) => {
 
   const [price, setPrice] = useState<number>(0);
 
+  const [formValidation,setFormValidation] = useState<boolean>(false);
+
   useEffect(() => {
     total();
   }, []);
@@ -34,57 +36,88 @@ const ContactData : React.FC<Props> = (props) => {
  
 
 
-  const [MyForm, setMyForm]:any = useState({
-      name: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your Name",
-        },
-        value: ""
+  const [MyForm, setMyForm]: any = useState({
+    name: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "Your Name",
       },
-      street: {
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your Street",
-        },
-        value: ""
+      value: "",
+      validation: {
+        required: true,
       },
-      zipcode: {
-        elementType: "input",
-        elementConfig: {
-          type: "number",
-          placeholder: "Your Zipcode",
-        },
-        value: ""
+      valid: false,
+      touched: false,
+    },
+    street: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "Your Street",
       },
-      district:{
-        elementType: "input",
-        elementConfig: {
-          type: "text",
-          placeholder: "Your Country",
-        },
-        value: ""
+      value: "",
+      validation: {
+        required: true,
       },
-      gender: {
-        elementType: "select",
-        elementConfig: {
-          options:[
-            {value:'male',displayValue:'Male'},
-            {value:'female',displayValue:'Female'}
-          ]
-        },
-        value: ""
+      valid: false,
+      touched: false,
+    },
+    zipcode: {
+      elementType: "input",
+      elementConfig: {
+        type: "number",
+        placeholder: "Your Zipcode",
       },
-      email: {
-        elementType: "input",
-        elementConfig: {
-          type: "email",
-          placeholder: "Your Email",
-        },
-        value: ""
+      value: "",
+      validation: {
+        required: true,
+        minLength: 5,
+        maxLength: 5,
       },
+      valid: false,
+      touched: false,
+    },
+    district: {
+      elementType: "input",
+      elementConfig: {
+        type: "text",
+        placeholder: "Your Country",
+      },
+      value: "",
+      validation: {
+        required: true,
+      },
+      valid: false,
+      touched: false,
+    },
+    gender: {
+      elementType: "select",
+      elementConfig: {
+        options: [
+          { value: "male", displayValue: "Male" },
+          { value: "female", displayValue: "Female" },
+        ],
+      },
+      value: "",
+      validation:{
+
+      },
+      valid:true,
+    },
+    email: {
+      elementType: "input",
+      elementConfig: {
+        type: "email",
+        placeholder: "Your Email",
+      },
+      value: "",
+      validation: {
+        required: true,
+      },
+      valid: false,
+      touched: false,
+    },
   });
 
  
@@ -159,6 +192,20 @@ const ContactData : React.FC<Props> = (props) => {
        setPrice(price);
      };
 
+     const checkValidity = (value:string,rules:any): boolean => {
+      let isValid = true;
+      if(rules.required){
+        isValid = value.trim() !== '' && isValid;
+      }
+      if(rules.minLength){
+        isValid = value.length >= rules.minLength && isValid;
+      }
+      if(rules.maxLength){
+        isValid = value.length <= rules.maxLength && isValid;
+      }
+      return isValid;
+     }
+
      function inputChangedHandler(event:any,inputIdentifier:any) {
       const updatedForm = {
         ...MyForm
@@ -168,24 +215,34 @@ const ContactData : React.FC<Props> = (props) => {
       };
 
       updatedFormElement.value= event.target.value; 
+      updatedFormElement.valid = checkValidity(updatedFormElement.value,updatedFormElement.validation);
+      updatedFormElement.touched = true;
       updatedForm[inputIdentifier] = updatedFormElement;
+      let formIsValid = true;
+      for (let inputIdentifier in updatedForm){
+        formIsValid = updatedForm[inputIdentifier].valid && formIsValid;
+      }
+      setFormValidation(formIsValid);
       setMyForm(updatedForm);
 
      }
 
      let form = (
        <form onSubmit={orderHandle}>
-         {formElementsArray.map((formElement,index) => (
-         <Input 
-         changed={(event) => inputChangedHandler(event,formElement.id)}
-         key={formElement.id}
-         elementType={formElement.config.elementType}
-         elementConfig={formElement.config.elementConfig}
-         value={formElement.config.value}
-          />
+         {formElementsArray.map((formElement, index) => (
+           <Input
+             changed={(event) => inputChangedHandler(event, formElement.id)}
+             key={formElement.id}
+             elementType={formElement.config.elementType}
+             elementConfig={formElement.config.elementConfig}
+             value={formElement.config.value}
+             invalid={!formElement.config.valid}
+             shouldValidate={formElement.config.validation}
+             touched={formElement.config.touched}
+           />
          ))}
-         
-         <Button btnType="Success" clicked={props.click}>
+
+         <Button btnType="Success" disabled={!formValidation} clicked={props.click}>
            Order
          </Button>
        </form>
