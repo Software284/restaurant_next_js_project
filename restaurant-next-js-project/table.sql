@@ -87,6 +87,56 @@ CREATE SEQUENCE food_cartproduct_seq
     FOREIGN KEY(customer_id) REFERENCES food_customer(id)
   );
 
+  /* security tables */
+
+  create table users(
+    USERNAME varchar2(70),
+    PASSWORD varchar2(70) NOT NULL,
+    ENABLED char(1) NOT NULL CHECK(ENABLED IN('Y','N')),
+    primary key(USERNAME)
+    );
+    
+    insert into users values('Mahesh@Gmail.Com','$2y$10$SlQ6xPNZgjYjy8w01VQO5uFi.arpbcRleyplr40r138W7ctfSuCri','Y');
+    insert into users values('Nabin@Gmail.Com','$2y$10$QDuZL9LUP7pRknXwU25KyO5Ap23faZRb.RTwf8vKd/upksbsVwI4q','Y');
+    
+    
+     create table authorities(
+        authority_id number(10) primary key,
+        role varchar2(128) not null,
+        authority varchar(128) not null
+        );
+        alter table authorities add constraint authorities_unique unique(role,authority);
+        alter table authorities add constraint authorities_FK1 foreign key(ROLE) references roles(role);
+        
+        insert into authorities values(1,'ROLE_ADMIN','ADD_PRODUCT');
+        insert into authorities values(2,'ROLE_USER','GET_PRODUCT');
+        
+        
+    
+    create table roles(
+    ROLE varchar2(128) not null,
+    primary key(ROLE)
+    );
+    insert into roles values('ROLE_ADMIN');
+    insert into roles values('ROLE_USER');
+    
+  
+    
+    create table USER_ROLE(
+        USER_ROLE_ID number(10) primary key,
+        USERNAME varchar2(128) not null,
+        ROLE varchar2(128) not null
+        );
+    alter table user_role add constraint user_role_unique unique(username,role);
+    alter table user_role add constraint user_role_fk1 foreign key(username) 
+    references users(username);
+    alter table user_role add constraint user_role_fk2 foreign key(role) 
+    references roles(role);
+    
+    insert into user_role values(1,'Mahesh@Gmail.Com','ROLE_ADMIN');
+    insert into user_role values(2,'Nabin@Gmail.Com','ROLE_USER');
+   
+
 
 
   

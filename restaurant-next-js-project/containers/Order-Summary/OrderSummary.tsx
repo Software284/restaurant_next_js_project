@@ -4,7 +4,7 @@ import Button from '../../components/UI/Button/Button';
 import { useState,useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import { State } from "../../store/reducers/rootReducers";
-import * as ActionCreators from "../../store/actions/action-creators";
+import * as ActionCreators from "../../store/actions/cart/action-creators";
 import { bindActionCreators } from "redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons'

@@ -1,5 +1,5 @@
 import { ActionTypes } from './action-types';
-import { CartProduct } from '../../models/classes/CartProduct';
+import { CartProduct } from '../../../models/classes/CartProduct';
 
 interface ADD_ACTION {
   type:ActionTypes.ADD_CART,

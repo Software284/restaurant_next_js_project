@@ -74,6 +74,7 @@ const ContactData : React.FC<Props> = (props) => {
         required: true,
         minLength: 5,
         maxLength: 5,
+        isNumeric: true,
       },
       valid: false,
       touched: false,
@@ -100,10 +101,8 @@ const ContactData : React.FC<Props> = (props) => {
         ],
       },
       value: "",
-      validation:{
-
-      },
-      valid:true,
+      validation: {},
+      valid: true,
     },
     email: {
       elementType: "input",
@@ -114,6 +113,7 @@ const ContactData : React.FC<Props> = (props) => {
       value: "",
       validation: {
         required: true,
+        isEmail: true,
       },
       valid: false,
       touched: false,
@@ -152,7 +152,6 @@ const ContactData : React.FC<Props> = (props) => {
 
     const add = new Address(formData.street,formData.zipcode,formData.district);
     const customer = new Customer(formData.name,formData.email,formData.gender,add);
-    console.log("Price="+price);
     const or = new OrderDemo(price,data,customer);
 
     const orderdemo = or;
@@ -202,6 +201,16 @@ const ContactData : React.FC<Props> = (props) => {
       }
       if(rules.maxLength){
         isValid = value.length <= rules.maxLength && isValid;
+      }
+      if (rules.isEmail) {
+        const pattern =
+          /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+        isValid = pattern.test(value) && isValid;
+      }
+
+      if (rules.isNumeric) {
+        const pattern = /^\d+$/;
+        isValid = pattern.test(value) && isValid;
       }
       return isValid;
      }

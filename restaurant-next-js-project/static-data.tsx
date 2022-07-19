@@ -19,6 +19,11 @@ export const navbar = [
     name: "favorites",
     url: "/favorites",
   },
+  {
+    id: "login",
+    name: "Login",
+    url: "/login",
+  },
 ];
 
 export const products = [

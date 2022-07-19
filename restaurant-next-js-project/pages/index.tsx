@@ -5,7 +5,7 @@ import { CartProduct } from "../models/classes/CartProduct";
 
 import {useDispatch,useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as ActionCreators from '../store/actions/action-creators';
+import * as ActionCreators from '../store/actions/cart/action-creators';
 import {State} from '../store/reducers/rootReducers';
 
 interface Props{

@@ -7,7 +7,7 @@ import {Product} from '../../models/Product';
 import { CartProduct } from '../../models/classes/CartProduct';
 
 import { useDispatch, useSelector } from "react-redux";
-import * as ActionCreators from "../../store/actions/action-creators";
+import * as ActionCreators from "../../store/actions/cart/action-creators";
 import { bindActionCreators } from "redux";
 import { State } from "../../store/reducers/rootReducers";
 
