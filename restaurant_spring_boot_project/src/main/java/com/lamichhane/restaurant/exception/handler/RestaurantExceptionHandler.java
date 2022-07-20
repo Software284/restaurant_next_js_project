@@ -8,11 +8,15 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.lamichhane.restaurant.exception.classes.AddressNotFoundException;
+import com.lamichhane.restaurant.exception.classes.AuthoritiesEntityNotFoundException;
 import com.lamichhane.restaurant.exception.classes.CartProductNotFoundException;
 import com.lamichhane.restaurant.exception.classes.CustomerNotFoundException;
 import com.lamichhane.restaurant.exception.classes.OrderNotFoundException;
 import com.lamichhane.restaurant.exception.classes.ProductNotFoundException;
+import com.lamichhane.restaurant.exception.classes.RoleEntityNotFoundException;
 import com.lamichhane.restaurant.exception.classes.StandardRestErrorResponse;
+import com.lamichhane.restaurant.exception.classes.UserEntityNotFoundException;
+import com.lamichhane.restaurant.exception.classes.UserRoleEntityNotFoundException;
 
 
 
@@ -75,6 +79,58 @@ public class RestaurantExceptionHandler  {
 						// Add an exception handler for CustomerNotFoundException
 						@ExceptionHandler
 						public ResponseEntity<StandardRestErrorResponse> handleException(CustomerNotFoundException exc) {
+				
+							StandardRestErrorResponse error = new StandardRestErrorResponse(
+																HttpStatus.NOT_FOUND.value(),
+																exc.getMessage(),
+																System.currentTimeMillis());
+							
+							
+							return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+						}
+						
+						// Add an exception handler for UserEntityNotFoundException
+						@ExceptionHandler
+						public ResponseEntity<StandardRestErrorResponse> handleException(UserEntityNotFoundException exc) {
+				
+							StandardRestErrorResponse error = new StandardRestErrorResponse(
+																HttpStatus.NOT_FOUND.value(),
+																exc.getMessage(),
+																System.currentTimeMillis());
+							
+							
+							return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+						}
+						
+						// Add an exception handler for AuthoritiesEntiyNotFoundException
+						@ExceptionHandler
+						public ResponseEntity<StandardRestErrorResponse> handleException(AuthoritiesEntityNotFoundException exc) {
+				
+							StandardRestErrorResponse error = new StandardRestErrorResponse(
+																HttpStatus.NOT_FOUND.value(),
+																exc.getMessage(),
+																System.currentTimeMillis());
+							
+							
+							return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+						}
+						
+						// Add an exception handler for RoleEntityFoundException
+						@ExceptionHandler
+						public ResponseEntity<StandardRestErrorResponse> handleException(RoleEntityNotFoundException exc) {
+				
+							StandardRestErrorResponse error = new StandardRestErrorResponse(
+																HttpStatus.NOT_FOUND.value(),
+																exc.getMessage(),
+																System.currentTimeMillis());
+							
+							
+							return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+						}
+						
+						// Add an exception handler for UserRoleEntityNotFoundException
+						@ExceptionHandler
+						public ResponseEntity<StandardRestErrorResponse> handleException(UserRoleEntityNotFoundException exc) {
 				
 							StandardRestErrorResponse error = new StandardRestErrorResponse(
 																HttpStatus.NOT_FOUND.value(),
