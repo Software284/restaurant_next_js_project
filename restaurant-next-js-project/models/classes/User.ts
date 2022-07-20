@@ -1,9 +1,9 @@
 export class User {
     username:string;
     password:string;
-    enabled:string;
+    enabled:boolean;
 
-    constructor(username:string,password:string,enabled:string){
+    constructor(username:string,password:string,enabled:boolean){
         this.username = username;
         this.password = password;
         this.enabled = enabled;
@@ -28,7 +28,7 @@ export class User {
     get getEnabled(){
         return this.enabled;
     }
-    set setEnabled(enabled:string){
+    set setEnabled(enabled:boolean){
         this.enabled = enabled;
     }
 }

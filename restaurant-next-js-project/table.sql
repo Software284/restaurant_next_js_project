@@ -89,22 +89,32 @@ CREATE SEQUENCE food_cartproduct_seq
 
   /* security tables */
 
+CREATE SEQUENCE user_seq
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 20;
+
   create table users(
     USERNAME varchar2(70),
     PASSWORD varchar2(70) NOT NULL,
     ENABLED char(1) NOT NULL CHECK(ENABLED IN('Y','N')),
-    primary key(USERNAME)
+    primary key(username)
     );
     
     insert into users values('Mahesh@Gmail.Com','$2y$10$SlQ6xPNZgjYjy8w01VQO5uFi.arpbcRleyplr40r138W7ctfSuCri','Y');
     insert into users values('Nabin@Gmail.Com','$2y$10$QDuZL9LUP7pRknXwU25KyO5Ap23faZRb.RTwf8vKd/upksbsVwI4q','Y');
-    
     
      create table authorities(
         authority_id number(10) primary key,
         role varchar2(128) not null,
         authority varchar(128) not null
         );
+        CREATE SEQUENCE authorities_seq
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 20;
         alter table authorities add constraint authorities_unique unique(role,authority);
         alter table authorities add constraint authorities_FK1 foreign key(ROLE) references roles(role);
         
@@ -114,9 +124,16 @@ CREATE SEQUENCE food_cartproduct_seq
         
     
     create table roles(
+    id number(10),
     ROLE varchar2(128) not null,
-    primary key(ROLE)
+    primary key(id),
+    alter table roles add constraint role_unique unique(role);
     );
+    CREATE SEQUENCE role_seq
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 20;
     insert into roles values('ROLE_ADMIN');
     insert into roles values('ROLE_USER');
     
@@ -127,14 +144,21 @@ CREATE SEQUENCE food_cartproduct_seq
         USERNAME varchar2(128) not null,
         ROLE varchar2(128) not null
         );
+
+    CREATE SEQUENCE user_role_seq
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    CACHE 20;
+
     alter table user_role add constraint user_role_unique unique(username,role);
-    alter table user_role add constraint user_role_fk1 foreign key(username) 
+    alter table user_role add constraint user_role_fk3 foreign key(username) 
     references users(username);
     alter table user_role add constraint user_role_fk2 foreign key(role) 
     references roles(role);
     
-    insert into user_role values(1,'Mahesh@Gmail.Com','ROLE_ADMIN');
-    insert into user_role values(2,'Nabin@Gmail.Com','ROLE_USER');
+    insert into user_role values(1,'Mahesh@gmail.com','ROLE_ADMIN');
+    insert into user_role values(2,'Nabin@gmail.com','ROLE_USER');
    
 
 

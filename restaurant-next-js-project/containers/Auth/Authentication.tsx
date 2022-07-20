@@ -8,13 +8,14 @@ import { bindActionCreators } from "redux";
 import { State } from "../../store/reducers/rootReducers";
 import axios from 'axios';
 import { User } from '../../models/classes/User';
-import https from "https";
 const Authentication = () => {
 
   const [formValidation, setFormValidation] = useState<boolean>(false);
 
+  const [isSignUp,setIsSignUp]  = useState(false);
+
   const [AuthForm, setAuthForm]:any = useState({
-    email: {
+    username: {
       elementType: "input",
       elementConfig: {
         type: "email",
@@ -43,6 +44,8 @@ const Authentication = () => {
       touched: false,
     },
   });
+
+ 
 
 
   const formElementsArray = [];
@@ -115,17 +118,30 @@ const Authentication = () => {
       user_obj[key] = AuthForm[key].value;
     }
 
-    const user = new User(user_obj.email,user_obj.password,'Y');
+    const user = new User(user_obj.username,user_obj.password,true);
     console.log(user.getUsername);
-    axios.post("http://localhost:8080/login/", {username:'mahesh@gmail.com',password:'mahesh',enabled:'Y'})
-    .then((response) => {
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    })
-    settoken('mahesh');
-    
+    console.log(user.getPassword);
+    console.log(user.getEnabled);
+    let url = "http://localhost:8080/login";
+    if(isSignUp){
+      url= "http://localhost:8080/register";
+    }
+    axios
+      .post(url, user)
+      .then((res) => {
+        const full_token = res.headers.authorization;
+        const final_token = full_token.replace("Bearer","");
+        settoken(final_token);
+      })
+      .catch((err) => {
+        return console.log(err);
+      });
+  }
+
+  const switchAuthModeHandler = (event:any) => {
+    event.preventDefault();
+    const current_val = isSignUp;
+    setIsSignUp(!current_val);
   }
 
   const form = (formElementsArray.map((formElement) => (
@@ -152,6 +168,7 @@ const Authentication = () => {
           SUBMIT
         </Button>
       </form>
+      <Button btnType="Danger" clicked={(event) => {switchAuthModeHandler(event)}}> SWITCH TO {isSignUp ? 'SIGN IN':'LOG IN'}</Button>
     </div>
   );
 };
