@@ -5,9 +5,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -15,6 +18,10 @@ import javax.persistence.Table;
 public class AuthoritiesEntity {
 
     @Column(name = "Authority_Id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "authorities_id_seq")
+	@SequenceGenerator(name = "authorities_id_seq", 
+	                   sequenceName = "authorities_seq",
+	                  allocationSize = 1) 
     @Id
     private Integer authorityId;
     

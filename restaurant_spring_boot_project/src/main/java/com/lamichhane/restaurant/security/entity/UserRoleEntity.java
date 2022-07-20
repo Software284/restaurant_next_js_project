@@ -2,9 +2,27 @@ package com.lamichhane.restaurant.security.entity;
 
 
 
-import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 @Entity
 @Table(name = "user_role")
@@ -12,6 +30,10 @@ public class UserRoleEntity {
 
     @Column(name = "User_Role_Id")
     @Id
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "user_entity_id_seq")
+	@SequenceGenerator(name = "user_entity_id_seq", 
+	                   sequenceName = "user_role_seq",
+	                  allocationSize = 1) 
     private Integer userRoleId;
     
     @Column(name = "Role")
@@ -22,6 +44,8 @@ public class UserRoleEntity {
     CascadeType.DETACH,CascadeType.REFRESH})
     @JoinColumn(name = "Username", nullable = false)
     private UserEntity userEntity;
+    
+   
 
 
     
@@ -55,6 +79,12 @@ public class UserRoleEntity {
 	public void setRole(String role) {
 		this.role = role;
 	}
+
+	public Integer getUserRoleId() {
+		return userRoleId;
+	}
+	
+	
 	
 	
 	
