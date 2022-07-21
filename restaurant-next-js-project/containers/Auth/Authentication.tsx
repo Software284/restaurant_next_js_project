@@ -8,11 +8,14 @@ import { bindActionCreators } from "redux";
 import { State } from "../../store/reducers/rootReducers";
 import axios from 'axios';
 import { User } from '../../models/classes/User';
+import Router, { useRouter } from 'next/router';
 const Authentication = () => {
 
   const [formValidation, setFormValidation] = useState<boolean>(false);
 
   const [isSignUp,setIsSignUp]  = useState(false);
+
+  const route = useRouter();
 
   const [AuthForm, setAuthForm]:any = useState({
     username: {
@@ -118,13 +121,12 @@ const Authentication = () => {
       user_obj[key] = AuthForm[key].value;
     }
 
-    const user = new User(user_obj.username,user_obj.password,true);
-    console.log(user.getUsername);
-    console.log(user.getPassword);
-    console.log(user.getEnabled);
-    let url = "http://localhost:8080/login";
+    const user = new User(user_obj.username,user_obj.password);
+
+    let url = "http://localhost:8080/restaurant/register";
+    
     if(isSignUp){
-      url= "http://localhost:8080/register";
+      url = "http://localhost:8080/login";
     }
     axios
       .post(url, user)
@@ -132,6 +134,7 @@ const Authentication = () => {
         const full_token = res.headers.authorization;
         const final_token = full_token.replace("Bearer","");
         settoken(final_token);
+        Router.push("/");
       })
       .catch((err) => {
         return console.log(err);

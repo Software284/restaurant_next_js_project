@@ -1,12 +1,13 @@
 export class User {
     username:string;
     password:string;
-    enabled:boolean;
+    enabled?:string;
+    role?:string;
 
-    constructor(username:string,password:string,enabled:boolean){
+    constructor(username:string,password:string){
         this.username = username;
         this.password = password;
-        this.enabled = enabled;
+        // this.enabled = enabled;
     }
 
     get getUsername(){
@@ -28,7 +29,15 @@ export class User {
     get getEnabled(){
         return this.enabled;
     }
-    set setEnabled(enabled:boolean){
+    set setEnabled(enabled:string){
         this.enabled = enabled;
+    }
+
+    get getRole() {
+        return this.role;
+    }
+
+    set setRole(role:string){
+        this.role = role;
     }
 }

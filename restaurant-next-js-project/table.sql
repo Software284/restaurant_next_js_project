@@ -102,8 +102,8 @@ CREATE SEQUENCE user_seq
     primary key(username)
     );
     
-    insert into users values('Mahesh@Gmail.Com','$2y$10$SlQ6xPNZgjYjy8w01VQO5uFi.arpbcRleyplr40r138W7ctfSuCri','Y');
-    insert into users values('Nabin@Gmail.Com','$2y$10$QDuZL9LUP7pRknXwU25KyO5Ap23faZRb.RTwf8vKd/upksbsVwI4q','Y');
+    insert into users values('Mahesh@gmail.com','$2y$10$SlQ6xPNZgjYjy8w01VQO5uFi.arpbcRleyplr40r138W7ctfSuCri','Y');
+    insert into users values('Nabin@gmail.com','$2y$10$QDuZL9LUP7pRknXwU25KyO5Ap23faZRb.RTwf8vKd/upksbsVwI4q','Y');
     
      create table authorities(
         authority_id number(10) primary key,
