@@ -45,8 +45,14 @@ public class UserService {
 	}
 
 	private User createUserFromUserEntity(UserEntity ue) {
-		
-		User user = new User(ue.getUsername(), ue.getPassword(), ue.isEnabled());
+		boolean x;
+		if(ue.getEnabled().equals('Y')) {
+			x = false;
+		}
+		else {
+			x= true;
+		}
+		User user = new User(ue.getUsername(), ue.getPassword(),x);
 
         // Fetch authorities from authorities table
         Stream<Stream<String>> streamStreamAuths = ue.getUserRoleEntities().stream()

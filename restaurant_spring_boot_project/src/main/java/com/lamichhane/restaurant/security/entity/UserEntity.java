@@ -2,18 +2,19 @@ package com.lamichhane.restaurant.security.entity;
 
 
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name="users")
@@ -27,10 +28,13 @@ public class UserEntity {
 	private String password;
 	
 	@Column(name="Enabled")
-	private boolean enabled;
+	private String enabled;
 	
 	@OneToMany(mappedBy="userEntity",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JsonIgnoreProperties("userEntity")
 	private Set<UserRoleEntity> userRoleEntities;
+	
+	
 	
 	
 	
@@ -46,19 +50,13 @@ public class UserEntity {
 
 
 
-	public UserEntity(String username, String password, boolean enabled) {
+	public UserEntity(String username, String password, String enabled) {
 		
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
 	}
-
-
-
-
-
-
-
+	
 
 	@Override
 	public String toString() {
@@ -76,19 +74,12 @@ public class UserEntity {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public boolean isEnabled() {
+	public String getEnabled() {
 		return enabled;
 	}
-	public void setEnabled(boolean enabled) {
+	public void setEnabled(String enabled) {
 		this.enabled = enabled;
 	}
-
-
-
-
-
-
-
 
 	public Set<UserRoleEntity> getUserRoleEntities() {
 		return userRoleEntities;
@@ -98,6 +89,19 @@ public class UserEntity {
 	public void setUserRoleEntities(Set<UserRoleEntity> userRoleEntities) {
 		this.userRoleEntities = userRoleEntities;
 	}
+	
+	
+	
+	public void add(UserRoleEntity tempUserRoleEntity) {
+		if(userRoleEntities == null) {
+			userRoleEntities = new HashSet<>();
+			
+		}
+		userRoleEntities.add(tempUserRoleEntity);
+		tempUserRoleEntity.setUserEntity(this);
+	}
+	
+	
 
 	
 }

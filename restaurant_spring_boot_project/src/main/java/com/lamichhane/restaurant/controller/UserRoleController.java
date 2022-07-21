@@ -33,8 +33,8 @@ public class UserRoleController {
 	}
 	
 	@GetMapping("/user_role/{userroleId}")
-	public UserRoleEntity getUserRole(@PathVariable int userRoleId) {
-		UserRoleEntity user_role = userRoleEntityService.getUserRoleEntity(userRoleId);
+	public UserRoleEntity getUserRole(@PathVariable int userroleId) {
+		UserRoleEntity user_role = userRoleEntityService.getUserRoleEntity(userroleId);
 		return user_role;
 	}
 	
