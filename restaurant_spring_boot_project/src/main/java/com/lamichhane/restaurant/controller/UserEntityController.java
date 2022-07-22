@@ -47,7 +47,7 @@ public class UserEntityController {
 	
 	
 	@PostMapping("/register")
-	public ResponseEntity<StandardRestSuccessResponse> saveUserEntity(HttpServletResponse response,@RequestBody UserEntity userEntity) {
+	public ResponseEntity<UserEntity> saveUserEntity(@RequestBody UserEntity userEntity) {
 		
 		userEntity.setEnabled("Y");
 		Set<UserRoleEntity> user_role_entity = new HashSet<>();
@@ -72,7 +72,7 @@ public class UserEntityController {
 		
 		userEntityService.saveUserEntity(userEntity);
         
-		return new ResponseEntity<>(res,HttpStatus.CREATED);
+		return new ResponseEntity<>(userEntity,HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/user")
