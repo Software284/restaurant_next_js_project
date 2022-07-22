@@ -114,31 +114,55 @@ const Authentication = () => {
 
     const token = useSelector((state: State) => state.authreducer);
 
-  const loginHandler = (event:any) => {
+  const loginHandler = async (event:any) => {
     event.preventDefault();
     const user_obj:any = {};
     for(let key in AuthForm){
       user_obj[key] = AuthForm[key].value;
     }
-
     const user = new User(user_obj.username,user_obj.password);
-
-    let url = "http://localhost:8080/restaurant/register";
     
     if(isSignUp){
-      url = "http://localhost:8080/login";
+      let url = "http://localhost:8080/login";
+      axios
+        .post(url, user)
+        .then((res) => {
+          const full_token = res.headers.authorization;
+          const final_token = full_token.replace("Bearer", "");
+          settoken(final_token);
+          Router.push("/");
+        })
+        .catch((err) => {
+          return console.log(err);
+        });
     }
-    axios
-      .post(url, user)
-      .then((res) => {
-        const full_token = res.headers.authorization;
-        const final_token = full_token.replace("Bearer","");
-        settoken(final_token);
-        Router.push("/");
-      })
-      .catch((err) => {
-        return console.log(err);
-      });
+    else {
+       let url2 = "http://localhost:8080/restaurant/register";
+       const new_user = {...user};
+       const password = new_user.password;
+       const bcrypt = require("bcryptjs");
+       const salt = await bcrypt.genSalt(10);
+       const sec_pass = await bcrypt.hash(password,salt);
+       new_user.password = sec_pass;
+       axios
+         .post(url2, new_user)
+         .then((res) => {
+            axios
+             .post("http://localhost:8080/login", user)
+             .then((res) => {
+               const full_token = res.headers.authorization;
+               const final_token = full_token.replace("Bearer", "");
+               settoken(final_token);
+               Router.push("/");
+             })
+             .catch((err) => {
+               return console.log(err);
+             });
+         })
+         .catch((err) => {
+           return console.log(err);
+         });
+    }
   }
 
   const switchAuthModeHandler = (event:any) => {
@@ -169,7 +193,7 @@ const Authentication = () => {
         {form}
         <Button btnType="Success" disabled={!formValidation} clicked={(event) => loginHandler(event)}>
           SUBMIT
-        </Button>
+        </Button>  
       </form>
       <Button btnType="Danger" clicked={(event) => {switchAuthModeHandler(event)}}> SWITCH TO {isSignUp ? 'SIGN IN':'LOG IN'}</Button>
     </div>

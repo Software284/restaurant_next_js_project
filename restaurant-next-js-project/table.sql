@@ -102,8 +102,8 @@ CREATE SEQUENCE user_seq
     primary key(username)
     );
     
-    insert into users values('Mahesh@gmail.com','$2y$10$SlQ6xPNZgjYjy8w01VQO5uFi.arpbcRleyplr40r138W7ctfSuCri','Y');
-    insert into users values('Nabin@gmail.com','$2y$10$QDuZL9LUP7pRknXwU25KyO5Ap23faZRb.RTwf8vKd/upksbsVwI4q','Y');
+    insert into users values('mahesh@gmail.com','$2y$10$SlQ6xPNZgjYjy8w01VQO5uFi.arpbcRleyplr40r138W7ctfSuCri','Y');
+    insert into users values('nabin@gmail.com','$2y$10$QDuZL9LUP7pRknXwU25KyO5Ap23faZRb.RTwf8vKd/upksbsVwI4q','Y');
     
      create table authorities(
         authority_id number(10) primary key,
@@ -157,8 +157,8 @@ CREATE SEQUENCE user_seq
     alter table user_role add constraint user_role_fk2 foreign key(role) 
     references roles(role);
     
-    insert into user_role values(1,'Mahesh@gmail.com','ROLE_ADMIN');
-    insert into user_role values(2,'Nabin@gmail.com','ROLE_USER');
+    insert into user_role values(1,'mahesh@gmail.com','ROLE_ADMIN');
+    insert into user_role values(2,'nabin@gmail.com','ROLE_USER');
    
 
 
