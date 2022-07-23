@@ -11,6 +11,7 @@ import com.lamichhane.restaurant.exception.classes.AddressNotFoundException;
 import com.lamichhane.restaurant.exception.classes.AuthoritiesEntityNotFoundException;
 import com.lamichhane.restaurant.exception.classes.CartProductNotFoundException;
 import com.lamichhane.restaurant.exception.classes.CustomerNotFoundException;
+import com.lamichhane.restaurant.exception.classes.FavouritesProductNotFoundException;
 import com.lamichhane.restaurant.exception.classes.OrderNotFoundException;
 import com.lamichhane.restaurant.exception.classes.ProductNotFoundException;
 import com.lamichhane.restaurant.exception.classes.RoleEntityNotFoundException;
@@ -131,6 +132,19 @@ public class RestaurantExceptionHandler  {
 						// Add an exception handler for UserRoleEntityNotFoundException
 						@ExceptionHandler
 						public ResponseEntity<StandardRestErrorResponse> handleException(UserRoleEntityNotFoundException exc) {
+				
+							StandardRestErrorResponse error = new StandardRestErrorResponse(
+																HttpStatus.NOT_FOUND.value(),
+																exc.getMessage(),
+																System.currentTimeMillis());
+							
+							
+							return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+						}
+						
+						// Add an exception handler for UserRoleEntityNotFoundException
+						@ExceptionHandler
+						public ResponseEntity<StandardRestErrorResponse> handleException(FavouritesProductNotFoundException exc) {
 				
 							StandardRestErrorResponse error = new StandardRestErrorResponse(
 																HttpStatus.NOT_FOUND.value(),

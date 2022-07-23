@@ -31,6 +31,7 @@ public class RestaurantSpringBootProjectApplication {
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addExposedHeader("Authorization");
+        config.addExposedHeader("user");
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("HEAD");
         config.addAllowedMethod("GET");

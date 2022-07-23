@@ -7,6 +7,7 @@ import static com.auth0.jwt.algorithms.Algorithm.HMAC512;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.StringTokenizer;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -70,6 +71,9 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		
 		response.addHeader("Authorization","Bearer "+token);
+		StringTokenizer st = new StringTokenizer(user.getUsername(), "@");
+	    String s2 = st.nextToken();
+		response.addHeader("user", s2);
 		
 		
 	}
