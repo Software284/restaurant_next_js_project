@@ -16,7 +16,7 @@ export const navbar = [
   },
   {
     id: "favorites",
-    name: "favorites",
+    name: "favourites",
     url: "/favorites",
   },
   {

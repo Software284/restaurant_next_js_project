@@ -87,6 +87,21 @@ CREATE SEQUENCE food_cartproduct_seq
     FOREIGN KEY(customer_id) REFERENCES food_customer(id)
   );
 
+  CREATE SEQUENCE food_favouritesproduct_seq
+  MINVALUE 1
+  START WITH 1
+  INCREMENT BY 1
+  CACHE 20;
+  
+ create table food_favouritesproduct(
+  id number(10) primary key,
+  name varchar2(40) not null,
+  price number(10) not null,
+  quantity number(10) not null,
+  image varchar2(50) not null,
+  username varchar2(50) not null
+  );
+
   /* security tables */
 
 CREATE SEQUENCE user_seq

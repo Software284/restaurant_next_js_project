@@ -14,7 +14,6 @@ const Orders = () => {
          .then((res) => {
            setLoading(false);
            setOrders(res.data);
-
          })
          .catch((err) => {
            setLoading(false);

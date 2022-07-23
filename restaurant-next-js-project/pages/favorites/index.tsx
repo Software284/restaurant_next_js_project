@@ -1,6 +1,7 @@
+import FavouritesPageLayout from "../../layout/FavouritesPageLayout";
 const Favorites = () => {
     return(
-        <h1>Favorites Page</h1>
+        <FavouritesPageLayout/>
     );
 }
 export default Favorites;
