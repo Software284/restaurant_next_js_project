@@ -13,10 +13,10 @@ interface Props{
 }
 const Home = (props:any) => {
   const dispatch = useDispatch();
-  const { addItem, removeItem, decreamentItem } = bindActionCreators(
-    ActionCreators,
-    dispatch
-  );
+  // const { addItem, removeItem, decreamentItem } = bindActionCreators(
+  //   ActionCreators,
+  //   dispatch
+  // );
 
   const list = useSelector((state:State)=> state.cartreducer);
 

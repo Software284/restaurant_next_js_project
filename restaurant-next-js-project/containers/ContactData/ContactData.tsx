@@ -12,6 +12,10 @@ import { Customer } from '../../models/classes/Customer';
 import { OrderDemo } from '../../models/classes/OrderDemo';
 import { DemoCartProduct } from '../../models/classes/DemoCartProduct';
 
+import { useDispatch} from "react-redux";
+import { bindActionCreators } from "redux";
+import * as ActionCreators from "../../store/actions/cart/action-creators";
+
 interface Props{
   click: (event:any) => void;
 }
@@ -28,6 +32,12 @@ const ContactData : React.FC<Props> = (props) => {
   const [price, setPrice] = useState<number>(0);
 
   const [formValidation,setFormValidation] = useState<boolean>(false);
+
+  const dispatch = useDispatch();
+  const { resetItem } = bindActionCreators(
+    ActionCreators,
+    dispatch
+  );
 
   useEffect(() => {
     total();
@@ -161,7 +171,7 @@ const ContactData : React.FC<Props> = (props) => {
   Axios
     .post<OrderDemo>("order", orderdemo)
     .then((response) => {
-      console.log("Success");
+      resetItem();
       setLoading(false);
       // setMyForm({
       //   name: "",

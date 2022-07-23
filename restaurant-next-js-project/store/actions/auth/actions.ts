@@ -5,8 +5,11 @@ interface SET_TOKEN {
   payload:string,
 }
 
+interface SET_USER {
+  type: ActionTypes.SET_USER;
+  payload: string;
+}
 
-
-export type TokenAction = SET_TOKEN;
+export type TokenAction = SET_TOKEN | SET_USER;
 
 

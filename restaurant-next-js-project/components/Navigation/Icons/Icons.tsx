@@ -1,18 +1,23 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from './Icons.module.css';
 import { useState } from "react";
-import {useSelector } from "react-redux";
-import { faBars,faSearch,faShoppingCart,faHeart } from "@fortawesome/free-solid-svg-icons";
+import {useSelector,useDispatch } from "react-redux";
+import { faBars,faSearch,faShoppingCart,faHeart,faUser } from "@fortawesome/free-solid-svg-icons";
 import { State } from "../../../store/reducers/rootReducers";
 import OrderSummary from "../../../containers/Order-Summary/OrderSummary";
 import Modal from "../../UI/Modal/Modal";
 import ContactData from "../../../containers/ContactData/ContactData";
+
+import * as ActionCreators from "../../../store/actions/auth/action-creators";
+import { bindActionCreators } from "redux";
 const Icons = () => {
 
   const [modal, setModal] = useState(false);
   const list = useSelector((state: State) => state.cartreducer);
 
   const [switching, setSwitching] = useState<boolean>(false);
+
+   const auth_reducer = useSelector((state: State) => state.authreducer);
 
 
 
@@ -60,13 +65,19 @@ const Icons = () => {
           </i>
           <i className={classes.Shopping} onClick={modalOpenHandler}>
             <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
-            {list.carts.length >
-              0 ? (<span className={classes.Badge}>{list.carts.length}</span>): ""
-            }
+            {list.carts.length > 0 ? (
+              <span className={classes.Badge}>{list.carts.length}</span>
+            ) : (
+              ""
+            )}
             <div className={classes.CartModal}></div>
           </i>
           <i>
             <FontAwesomeIcon icon={faHeart} />
+          </i>
+          <i>
+            <FontAwesomeIcon icon={faUser} />
+            <span>{auth_reducer.user}:{auth_reducer.token}</span>
           </i>
         </div>
       </>

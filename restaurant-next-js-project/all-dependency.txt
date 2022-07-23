@@ -11,3 +11,5 @@ npm install redux-thunk @types/redux-thunk
 npm install @types/react
 npm install redux-devtools-extension
 npm i --save-dev @types/react-dom
+
+npm install bcryptjs

@@ -24,6 +24,11 @@ export const navbar = [
     name: "Login",
     url: "/login",
   },
+  {
+    id:"logout",
+    name:"Logout",
+    url:"/"
+  }
 ];
 
 export const products = [

@@ -16,8 +16,15 @@ interface DECREAMENT_ACTION {
   payload: CartProduct;
 }
 
+interface RESET_ACTION {
+  type: ActionTypes.RESET_CART;
+}
 
 
-export type CartAction = ADD_ACTION | DELETE_ACTION | DECREAMENT_ACTION;
+
+
+
+
+export type CartAction = ADD_ACTION | DELETE_ACTION | DECREAMENT_ACTION | RESET_ACTION;
 
 

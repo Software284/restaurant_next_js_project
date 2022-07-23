@@ -2,10 +2,12 @@ import { TokenAction } from "../actions/auth/actions";
 import { ActionTypes } from "../actions/auth/action-types";
 interface DefaultStateI {
   token: string;
+  user:string;
 }
 
 const INIT_STATE: DefaultStateI = {
   token:"",
+  user:""
 };
 
 export const authreducer = (state:DefaultStateI = INIT_STATE, action:TokenAction):DefaultStateI => {
@@ -14,6 +16,10 @@ export const authreducer = (state:DefaultStateI = INIT_STATE, action:TokenAction
       return {
         ...state,
         token: action.payload,
+      };
+    case ActionTypes.SET_USER:
+      return {
+        ...state,user:action.payload
       };
     default:
       return state;

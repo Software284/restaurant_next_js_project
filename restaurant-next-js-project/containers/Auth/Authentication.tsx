@@ -7,6 +7,7 @@ import * as ActionCreators from "../../store/actions/auth/action-creators";
 import { bindActionCreators } from "redux";
 import { State } from "../../store/reducers/rootReducers";
 import axios from 'axios';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import { User } from '../../models/classes/User';
 import Router, { useRouter } from 'next/router';
 const Authentication = () => {
@@ -14,6 +15,7 @@ const Authentication = () => {
   const [formValidation, setFormValidation] = useState<boolean>(false);
 
   const [isSignUp,setIsSignUp]  = useState(false);
+  const [loading,setLoading] = useState(false);
 
   const route = useRouter();
 
@@ -107,12 +109,12 @@ const Authentication = () => {
   };
 
     const dispatch = useDispatch();
-    const { settoken } = bindActionCreators(
+    const { settoken,setuser } = bindActionCreators(
       ActionCreators,
       dispatch
     );
 
-    const token = useSelector((state: State) => state.authreducer);
+    const auth_reducer = useSelector((state: State) => state.authreducer);
 
   const loginHandler = async (event:any) => {
     event.preventDefault();
@@ -121,14 +123,18 @@ const Authentication = () => {
       user_obj[key] = AuthForm[key].value;
     }
     const user = new User(user_obj.username,user_obj.password);
+    setLoading(true);
     
     if(isSignUp){
       let url = "http://localhost:8080/login";
       axios
         .post(url, user)
         .then((res) => {
+          setLoading(false);
           const full_token = res.headers.authorization;
           const final_token = full_token.replace("Bearer", "");
+          const user = res.headers.user;
+          setuser(user);
           settoken(final_token);
           Router.push("/");
         })
@@ -136,7 +142,7 @@ const Authentication = () => {
           return console.log(err);
         });
     }
-    else {
+    if(!isSignUp){
        let url2 = "http://localhost:8080/restaurant/register";
        const new_user = {...user};
        const password = new_user.password;
@@ -150,6 +156,7 @@ const Authentication = () => {
             axios
              .post("http://localhost:8080/login", user)
              .then((res) => {
+               setLoading(false);
                const full_token = res.headers.authorization;
                const final_token = full_token.replace("Bearer", "");
                settoken(final_token);
@@ -171,7 +178,7 @@ const Authentication = () => {
     setIsSignUp(!current_val);
   }
 
-  const form = (formElementsArray.map((formElement) => (
+  let form:any = (formElementsArray.map((formElement) => (
           <Input
             changed={(event) => inputChangedHandler(event, formElement.id)}
             key={formElement.id}
@@ -184,6 +191,9 @@ const Authentication = () => {
           />
         )));
 
+  if(loading){
+    form = <Spinner/>
+  }
 
 
 

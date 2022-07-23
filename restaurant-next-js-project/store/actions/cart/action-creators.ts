@@ -32,4 +32,12 @@ export const decreamentItem = (item: CartProduct) => {
   };
 };
 
+export const resetItem = () => {
+  return (dispatch: Dispatch<CartAction>) => {
+    dispatch({
+      type: ActionTypes.RESET_CART
+    });
+  };
+};
+
 

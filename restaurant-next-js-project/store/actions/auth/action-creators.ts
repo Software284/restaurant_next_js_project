@@ -12,3 +12,12 @@ export const settoken = (token:string) => {
   }
 }
 
+export const setuser = (user: string) => {
+  return (dispatch: Dispatch<TokenAction>) => {
+    dispatch({
+      type: ActionTypes.SET_USER,
+      payload: user,
+    });
+  };
+};
+
