@@ -8,8 +8,6 @@ import OrderSummary from "../../../containers/Order-Summary/OrderSummary";
 import Modal from "../../UI/Modal/Modal";
 import ContactData from "../../../containers/ContactData/ContactData";
 
-import * as ActionCreators from "../../../store/actions/auth/action-creators";
-import { bindActionCreators } from "redux";
 const Icons = () => {
 
   const [modal, setModal] = useState(false);

@@ -1,4 +1,4 @@
-import Products from '../components/products/products';
+import Products from '../components/Products/products';
 
 
 function IndexPageLayout(props:any){

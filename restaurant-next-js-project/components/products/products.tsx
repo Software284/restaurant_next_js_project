@@ -12,6 +12,8 @@ import { useDispatch, useSelector } from "react-redux";
 import * as ActionCreators from "../../store/actions/cart/action-creators";
 import { bindActionCreators } from "redux";
 import { State } from "../../store/reducers/rootReducers";
+import {useRouter} from 'next/router';
+
 
 interface Props {
   products: Product[];
@@ -47,6 +49,12 @@ function Products({products}:Props){
       .catch((error) => {});
   }
 
+  const router = useRouter();
+  const viewProductHandler = (event:any,id:number) => {
+    event.preventDefault();
+    router.push(`/${id}`);
+  }
+
     return (
       <div className={classes.Dishes}>
         <h1>Popular Dishes</h1>
@@ -61,7 +69,7 @@ function Products({products}:Props){
                         >
                           <FontAwesomeIcon icon={faHeart} />
                         </a>
-                        <a className={classes.Eye}>
+                        <a className={classes.Eye}  onClick={(event) => viewProductHandler(event,data.id)}>
                           <FontAwesomeIcon icon={faEye} />
                         </a>
                         <img src={data.img} alt=""></img>

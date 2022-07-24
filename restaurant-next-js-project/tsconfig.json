@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "hoc/Auxiliary.jsx"  ],
   "exclude": [
     "node_modules"
   ]

@@ -75,8 +75,7 @@ const AdminPage = (props:any) => {
          key={formElement.id}
          elementType={formElement.config.elementType}
          elementConfig={formElement.config.elementConfig}
-         value={formElement.config.value}
-       />
+         value={formElement.config.value} invalid={false} shouldValidate={false} touched={false}       />
      ))}
 
      <Button btnType="Success" clicked={props.click}>

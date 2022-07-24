@@ -1,11 +1,7 @@
 import IndexPageLayout from "../layout/IndexPageLayout";
 import { getAllProducts } from "../helpers/products-api-utils";
 import {Product} from '../models/Product';
-import { CartProduct } from "../models/classes/CartProduct";
-
 import {useDispatch,useSelector} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as ActionCreators from '../store/actions/cart/action-creators';
 import {State} from '../store/reducers/rootReducers';
 
 interface Props{
@@ -33,6 +29,7 @@ export async function getStaticProps() {
     props: {
       products: allproducts,
     },
+    revalidate: 60,
   };
 }
 
