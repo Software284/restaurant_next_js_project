@@ -10,15 +10,22 @@ create table food_product(
     img varchar2(50) not null,
     ratings number(1) not null,
     price number(10) not null,
-    description varchar2(400) not null
+    description varchar2(400) not null,
+    price_range varchar2(100) not null,
+    type varchar2(100) not null
 );
 
-insert into food_product values(1,'Momo','img/momo.jpg',4,150,'Momo are bite-size dumplings made with a spoonful of stuffing wrapped in dough. Momo are usually steamed, though they are sometimes fried or steam-fried. Meat or vegetables fillings becomes succulent as it produces an intensively flavored broth sealed inside the wrappers');
-insert into food_product values(2,'Chaumin','img/chaumin.jpg',4,120,'A Chinese dish consisting of noodles fried with chicken, pork, beef, or fish, and a variety of vegetables. Chinese restaurants in Western nations usually prepare the dish with shredded chicken, celery, onions, mushrooms, and fried noodles.');
-insert into food_product values(3,'Thukpa','img/thukpa.jpg',4,200,'Thukpa is a traditional Tibetan staple food suitable for the highland climate to keep the nomads warm during the long Tibetan winters enjoying a very nutritious meal. Generally speaking, noodle soups of all kinds are known as thukpa.');
-insert into food_product values(4,'Chicken Chilly','img/chickenchilly.jpg',4,300,'Nepali chicken chili is served in almost all the Nepali restaurants in Nepal, and internationally. It is a very popular dish. The hot chili, capsicum being bitter and spicy, tomatoes, onion and ketchup sweetness, all bringing out a unique taste of Nepali authentic recipe, which is absolutely acquired.');
-insert into food_product values(5,'Sasausage','img/sasausage.jpg',4,500,'sausage, meat product made of finely chopped and seasoned meat, which may be fresh, smoked, or pickled and which is then usually stuffed into a casing. Sausages of fish or poultry are also made');
-insert into food_product values(6,'Chicken Lollypop','img/lollypup.jpg',4,300,'This Chicken Lollipop Recipe is generally considered as a hors d’œuvre or appetizer dish. Though not everyone may know, this chicken dish is made from chicken wings');
+insert into food_product values(1,'Momo','img/momo.jpg',4,150,'Momo are bite-size dumplings made with a spoonful of stuffing wrapped in dough. Momo are usually steamed, though they are sometimes fried or steam-fried. Meat or vegetables fillings becomes succulent as it produces an intensively flavored broth sealed inside the wrappers','Less Than 200','Food');
+insert into food_product values(2,'Chaumin','img/chaumin.jpg',4,120,'A Chinese dish consisting of noodles fried with chicken, pork, beef, or fish, and a variety of vegetables. Chinese restaurants in Western nations usually prepare the dish with shredded chicken, celery, onions, mushrooms, and fried noodles.','Less Than 200','Food');
+insert into food_product values(3,'Thukpa','img/thukpa.jpg',4,200,'Thukpa is a traditional Tibetan staple food suitable for the highland climate to keep the nomads warm during the long Tibetan winters enjoying a very nutritious meal. Generally speaking, noodle soups of all kinds are known as thukpa.','Less Than 200','Food');
+insert into food_product values(4,'Chicken Chilly','img/chickenchilly.jpg',4,300,'Nepali chicken chili is served in almost all the Nepali restaurants in Nepal, and internationally. It is a very popular dish. The hot chili, capsicum being bitter and spicy, tomatoes, onion and ketchup sweetness, all bringing out a unique taste of Nepali authentic recipe, which is absolutely acquired.','Less Than 300','Food');
+insert into food_product values(5,'Sasausage','img/sasausage.jpg',4,500,'sausage, meat product made of finely chopped and seasoned meat, which may be fresh, smoked, or pickled and which is then usually stuffed into a casing. Sausages of fish or poultry are also made','Less Than 500','Food');
+insert into food_product values(6,'Chicken Lollypop','img/lollypup.jpg',4,300,'This Chicken Lollipop Recipe is generally considered as a hors d’œuvre or appetizer dish. Though not everyone may know, this chicken dish is made from chicken wings','Less Than 300','Food');
+insert into food_product values(7,'Vodka','img/vodka.jpg',5,500,'vodka, distilled liquor, clear and colourless and without definite aroma or taste, ranging in alcoholic content from about 40 to 55 percent','Less Than 500','Drinks');
+insert into food_product values(8,'Coke','img/coke.jpg',5,200,'vodka, distilled liquor, clear and colourless and without definite aroma or taste, ranging in alcoholic content from about 40 to 55 percent','Less Than 200','Drinks');
+insert into food_product values(9,'Juice','img/juice.jpg',5,200,'vodka, distilled liquor, clear and colourless and without definite aroma or taste, ranging in alcoholic content from about 40 to 55 percent','Less Than 100','Drinks');
+
+
 
 
 

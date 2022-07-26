@@ -13,6 +13,7 @@ import * as ActionCreators from "../../store/actions/cart/action-creators";
 import { bindActionCreators } from "redux";
 import { State } from "../../store/reducers/rootReducers";
 import {useRouter} from 'next/router';
+import ErrorAlert from '../UI/ErrorAlert/ErrorAlert';
 
 
 interface Props {
@@ -31,6 +32,11 @@ function Products({products}:Props){
   );
 
   const list = useSelector((state: State) => state.cartreducer);
+   const router = useRouter();
+
+  if (!products) {
+    return <ErrorAlert>Product Not Found</ErrorAlert>;
+  }
 
   
   const addDataToCard = (event:any,obj:Product) => {
@@ -49,7 +55,6 @@ function Products({products}:Props){
       .catch((error) => {});
   }
 
-  const router = useRouter();
   const viewProductHandler = (event:any,id:number) => {
     event.preventDefault();
     router.push(`/${id}`);
@@ -97,12 +102,12 @@ function Products({products}:Props){
                           >
                             add to cart
                           </a>
-                        </div>
-                      </div>
+                        </div> 
+                      </div> 
                     );
                 })
             };
-        </div>
+        </div> 
       </div>
     );
 }

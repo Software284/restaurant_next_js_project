@@ -1,0 +1,96 @@
+.form {
+  font-size: 20px;
+  background-color: red;
+  max-width: 1100px;
+  margin: 2rem auto;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  background-color: white;
+  border-radius: 6px;
+  width: 90%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 1rem;
+}
+
+.form .controls {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+}
+
+.form .controls button {
+  font: inherit;
+  padding: 0.25rem 0.5rem;
+  background-color: #03be9f;
+  border: 1px solid #03be9f;
+  color: #dafff7;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.form .controls .control {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.form .controls .control label {
+  font-weight: bold;
+}
+
+.form .controls .control select {
+  font: inherit;
+  background-color: white;
+  border-radius: 6px;
+  width: 100%;
+  padding: 1rem 1rem;
+}
+
+@media (min-width: 768px) {
+  .form {
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .controls {
+    width: 80%;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
+  }
+  .control select {
+    width: 100%;
+  }
+  .form button {
+    width: 20%;
+  }
+}
+/*# sourceMappingURL=ProductSearch.module.css.map */

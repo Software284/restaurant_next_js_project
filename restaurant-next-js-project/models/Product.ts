@@ -4,6 +4,8 @@ export interface Product {
    img: string;
    ratings: number;
    price: number;
+   price_range:string;
+   type:string;
 
 
 //   constructor(id:number,name: string, img: string, ratings: number, price: number) {
