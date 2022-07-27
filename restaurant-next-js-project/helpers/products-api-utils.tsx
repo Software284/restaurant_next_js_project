@@ -19,14 +19,33 @@ export async function getProductsById(id:any) {
   return data;
 }
 
-export async function getFilterProducts(proFilter: any) {
-  const { type, price_range } = proFilter;
-  console.log(price_range);
-  console.log(type);
+export async function getFilterProducts(Pro: any) {
+  const { price_range, type } = Pro;
   const allProducts = await getAllProducts();
-  const filterProduct = allProducts.filter((product) => {
-    return product.price_range == price_range && product.type == type;
-  });
-  console.log("Hello=" + filterProduct);
-  return filterProduct;
+ console.log(price_range);
+ console.log(type);
+  let filterProducts;
+  if (price_range == "All Products" && type == "All Products") {
+    filterProducts = allProducts.filter((product) => {
+      return price_range === "All Products" || type === "All Products";
+    });
+  }
+  else if(type === "All Products" && price_range !== "All Products"){
+     filterProducts = allProducts.filter((product) => {
+       return price_range === product.price_range;
+     });
+  }
+  else if(type !== "All Products" && price_range === "All Products"){
+    filterProducts = allProducts.filter((product) => {
+      return type === product.type;
+    });
+  }
+  else {
+     filterProducts = allProducts.filter((product) => {
+       return product.price_range === price_range && product.type === type;
+     });
+  }
+
+
+  return filterProducts;
 }

@@ -1,21 +1,30 @@
 import {useState} from 'react';
 import classes from './ProductSearch.module.css';
 import Input from '../UI/Input/Input';
-import Button from '../UI/Button/Button';
 import Router from 'next/router';
-import { NULL } from 'sass';
-function ProductSearch(){
+function ProductSearch(props:any){
+
+   let pro_type="All Products",price_range="All Products";
+   if(props.data1){
+    pro_type = `${props.data1}`;
+   }
+   if(props.data2){
+    price_range = `${props.data2}`;
+   }
+
+
 
     const [productSearch, setProductSearch]: any = useState({
       type: {
         elementType: "select",
         elementConfig: {
           options: [
+            { value: "All Products", displayValue: "All Products" },
             { value: "Food", displayValue: "Food" },
             { value: "Drinks", displayValue: "Drinks" },
           ],
         },
-        value: "Food",
+        value: pro_type,
         validation: {},
         valid: true,
       },
@@ -23,6 +32,7 @@ function ProductSearch(){
         elementType: "select",
         elementConfig: {
           options: [
+            { value: "All Products", displayValue: "All Products" },
             { value: "Less Than 100", displayValue: "Less Than 100" },
             { value: "Less Than 200", displayValue: "Less Than 200" },
             { value: "Less Than 300", displayValue: "Less Than 300" },
@@ -30,7 +40,7 @@ function ProductSearch(){
             { value: "Less Than 500", displayValue: "Less Than 500" },
           ],
         },
-        value: "Less Than 100",
+        value: price_range,
         validation: {},
         valid: true,
       },

@@ -1,25 +1,34 @@
 import { useRouter } from 'next/router';
-import IndexPageLayout from '../layout/IndexPageLayout';
-import {getFilterProducts} from '../helpers/products-api-utils';
 import ErrorAlert from '../components/UI/ErrorAlert/ErrorAlert';
+import {getFilterProducts} from '../helpers/products-api-utils';
+import ProductSearch from '../components/ProductSearch/ProductSearch';
 import Products from '../components/Products/products';
 function ProductSearchSlug(props){
   const router = useRouter();
   const filterData = router.query.slug;
+
   if(!filterData){
     return <p style={{textAlign:'center'}}>Loading...</p>
   }
 
-  const myFilterProducts = props.events;
+
+  const myFilterProducts = props.product;
+
+  let navigating_data = <Products products={myFilterProducts} />;
+   if (props.hasError) {
+      navigating_data = <ErrorAlert>Product Not Found</ErrorAlert>;
+   }
+
+
+
 
   return (
     <>
-      <h1>Slug Page</h1>
-      <Products products={myFilterProducts} />
+      <ProductSearch data1={filterData[0]} data2={filterData[1]}/>
+      {navigating_data}
+     
     </>
   );
-
-  // return <IndexPageLayout products={props.products}/>;
  
 
 }
@@ -35,10 +44,16 @@ function ProductSearchSlug(props){
       price_range: filterPrice,
       type: filterFood,
     });
+    console.log(filterProduct);
 
-    if (!filterProduct) {
-      return <ErrorAlert>Products Not Found</ErrorAlert>;
+    if (filterProduct.length === 0) {
+      return {
+        props:{
+          hasError:true
+        }
+      }
     }
+
 
     return {
       props: {

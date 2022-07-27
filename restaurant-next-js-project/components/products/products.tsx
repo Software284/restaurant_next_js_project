@@ -34,10 +34,6 @@ function Products({products}:Props){
   const list = useSelector((state: State) => state.cartreducer);
    const router = useRouter();
 
-  if (!products) {
-    return <ErrorAlert>Product Not Found</ErrorAlert>;
-  }
-
   
   const addDataToCard = (event:any,obj:Product) => {
     event.preventDefault();
@@ -67,7 +63,7 @@ function Products({products}:Props){
             {
                 products.map((data:Product,id) => {
                     return (
-                      <div className={classes.Box} key={data.img}>
+                      <div className={classes.Box} key={data.id}>
                         <a
                           className={classes.Heart}
                           onClick={(event) => addDataToFavourites(event, data)}
@@ -77,7 +73,7 @@ function Products({products}:Props){
                         <a className={classes.Eye}  onClick={(event) => viewProductHandler(event,data.id)}>
                           <FontAwesomeIcon icon={faEye} />
                         </a>
-                        <img src={data.img} alt=""></img>
+                        <img src={"/"+data.img} alt=""></img>
                         <h3>{data.name}</h3>
 
                         <div className={classes.Stars}>
