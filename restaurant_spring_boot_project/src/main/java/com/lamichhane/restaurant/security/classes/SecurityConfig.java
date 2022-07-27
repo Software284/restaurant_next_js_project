@@ -3,12 +3,15 @@ package com.lamichhane.restaurant.security.classes;
 
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import io.micrometer.core.ipc.http.HttpSender.Method;
 
 @Configuration
 @EnableWebSecurity
@@ -29,7 +32,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http.cors()
 			.and()
 			.csrf().disable().authorizeRequests()
-			.antMatchers("/restaurant/**").permitAll()
+			.antMatchers("/restaurant/product","/restaurant/register").permitAll()
+			.antMatchers("/restaurant/favouritesproductbyusername/{name}").hasRole("USER")
+			.antMatchers("/restaurant/favouritesproduct").hasRole("ADMIN")
+//			.antMatchers("favouritesproductbyusername/{name}").hasRole("USER")
+//			.antMatchers("/restaurant/order").access("hasRole('USER') and hasAuthority('GET_PRODUCT')")
+//			.antMatchers("/restaurant/favouritesproduct").hasRole("USER")
 //			.antMatchers("/v1/books/{bookId}").hasAuthority("USER")
 //			.antMatchers("/v1/books/{bookId}").hasAnyAuthority("USER","ADMIN")
 //			.antMatchers("/v1/books").hasAuthority("ADMIN")

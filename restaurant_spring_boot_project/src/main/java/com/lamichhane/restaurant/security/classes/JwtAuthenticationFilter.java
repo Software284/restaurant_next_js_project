@@ -66,11 +66,12 @@ public class JwtAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		
 		User user = (User) authResult.getPrincipal();
 		String token = JWT.create().withSubject(user.getUsername())
-				.withExpiresAt(new Date(System.currentTimeMillis() + 1800000))
+				.withExpiresAt(new Date(System.currentTimeMillis() + 3600000))
 				.sign(HMAC512("secret".getBytes()));
 		
 		
 		response.addHeader("Authorization","Bearer "+token);
+		response.addHeader("expiresIn","3600000");
 		StringTokenizer st = new StringTokenizer(user.getUsername(), "@");
 	    String s2 = st.nextToken();
 		response.addHeader("user", s2);

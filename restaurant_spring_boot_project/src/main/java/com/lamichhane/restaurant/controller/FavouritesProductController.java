@@ -32,6 +32,12 @@ public class FavouritesProductController {
 		return favouritesProductService.getAllFavouritesProduct();
 	}
 	
+	@GetMapping("/favouritesproductbyusername/{name}")
+	public List<FavouritesProduct> getAllFavouritesProductByUsername(@PathVariable String name) {
+		System.out.println("Hello Iam Here="+name);
+		return favouritesProductService.getAllFavouritesProductByUsername(name);
+	}
+	
 	@GetMapping("/favouritesproduct/{favouritesproudctId}")
 	public FavouritesProduct getFavouritesProduct(@PathVariable int favouritesproudctId) {
 		FavouritesProduct favourites_product = favouritesProductService.getFavouritesProduct(favouritesproudctId);

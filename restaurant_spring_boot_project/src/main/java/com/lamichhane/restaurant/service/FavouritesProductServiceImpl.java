@@ -28,6 +28,13 @@ public class FavouritesProductServiceImpl implements FavouritesProductService{
 		
 		return favouritesProductDAO.findAll();
 	}
+	
+	@Override
+	@Transactional
+	public List<FavouritesProduct> getAllFavouritesProductByUsername(String username) {
+		
+		return favouritesProductDAO.findByUsername(username);
+	}
 
 	@Override
 	@Transactional

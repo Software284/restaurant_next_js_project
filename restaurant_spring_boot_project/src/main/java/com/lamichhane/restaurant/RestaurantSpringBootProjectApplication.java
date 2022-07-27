@@ -31,6 +31,7 @@ public class RestaurantSpringBootProjectApplication {
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addExposedHeader("Authorization");
+        config.addExposedHeader("expiresIn"); 
         config.addExposedHeader("user");
         config.addAllowedMethod("OPTIONS");
         config.addAllowedMethod("HEAD");

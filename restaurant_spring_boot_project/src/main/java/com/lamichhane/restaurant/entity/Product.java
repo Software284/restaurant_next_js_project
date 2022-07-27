@@ -33,6 +33,15 @@ public class Product {
 	@Column(name="price")
 	private double price;
 	
+	@Column(name="description")
+	private String description;
+	
+	@Column(name="price_range")
+	private String price_range;
+	
+	@Column(name="type")
+	private String type;
+	
 	
 	
 	public Product() {
@@ -40,11 +49,15 @@ public class Product {
 
 
 
-	public Product(String name, String img, int ratings, double price) {
+	public Product(String name, String img, int ratings, double price, String description, String price_range,
+			String type) {
 		this.name = name;
 		this.img = img;
 		this.ratings = ratings;
 		this.price = price;
+		this.description = description;
+		this.price_range = price_range;
+		this.type = type;
 	}
 
 
@@ -97,9 +110,48 @@ public class Product {
 
 
 
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+	public String getPrice_range() {
+		return price_range;
+	}
+
+
+
+	public void setPrice_range(String price_range) {
+		this.price_range = price_range;
+	}
+
+
+
+	public String getType() {
+		return type;
+	}
+
+
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+
+
 	public int getId() {
 		return id;
 	}
+
+	
+	
 	
 	
 

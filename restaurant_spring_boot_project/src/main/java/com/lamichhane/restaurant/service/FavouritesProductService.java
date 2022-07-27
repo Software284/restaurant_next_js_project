@@ -7,6 +7,8 @@ import com.lamichhane.restaurant.entity.FavouritesProduct;
 public interface FavouritesProductService {
 
 	public List<FavouritesProduct> getAllFavouritesProduct();
+	
+	public List<FavouritesProduct> getAllFavouritesProductByUsername(String username);
 	   
 	public void saveFavouritesProduct(FavouritesProduct theFavouritesProduct);
 
