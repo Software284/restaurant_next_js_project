@@ -1,8 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 import classes from './Order.module.css';
-import {Order} from '../../../models/interfaces/Order';
+import {Customer} from '../../../models/interfaces/Customer';
+import { CartProduct } from '../../../models/classes/CartProduct';
+
 interface Props{
-    data:Order;
+    data:Customer;
 }
 const Order = (props:Props) => {
     return (
@@ -15,7 +17,7 @@ const Order = (props:Props) => {
             <th>Quantity</th>
           </tr>
             {
-              props.data.cartdata.map(data => {
+              props.data.order.cartdata.map((data,index) => {
                 return <tr key={data.id}>
                   <td>
                     <div>
@@ -29,7 +31,7 @@ const Order = (props:Props) => {
               })
             }
         </table>
-        <span>Total=$ {props.data.totalprice}</span>
+        <span>Total=$ {props.data.order.totalprice}</span>
       </div>
     );
     

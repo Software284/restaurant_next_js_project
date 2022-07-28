@@ -21,6 +21,10 @@ export const authreducer = (state:DefaultStateI = INIT_STATE, action:TokenAction
       return {
         ...state,user:action.payload
       };
+    case ActionTypes.AUTH_LOGOUT:
+      return {
+        ...state,token:"",user:""
+      }
     default:
       return state;
   }

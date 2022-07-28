@@ -5,13 +5,24 @@ import Axios from '../../axios';
 import { FavouritesProduct } from '../../models/interfaces/FavouritesProduct';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
+  import { useSelector } from "react-redux";
+  import { State } from "../../store/reducers/rootReducers";
+
 const Favourites= () => {
 
     const [favourites, setFavorites] = useState<FavouritesProduct[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
 
+    const list = useSelector((state: State) => state.authreducer);
+    const username = list.user;
+    console.log("Fuck user="+username);
+
     useEffect(() => {
-      Axios.get<FavouritesProduct[]>("favouritesproduct")
+      Axios.get<FavouritesProduct[]>(`/favouritesproductbyusername/${username}`,{
+        headers: {
+          Authorization: "Bearer" + list.token,
+        },
+      })
         .then((res) => {
           setLoading(false);
           setFavorites(res.data);

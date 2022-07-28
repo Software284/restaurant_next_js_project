@@ -13,7 +13,6 @@ import * as ActionCreators from "../../store/actions/cart/action-creators";
 import { bindActionCreators } from "redux";
 import { State } from "../../store/reducers/rootReducers";
 import {useRouter} from 'next/router';
-import ErrorAlert from '../UI/ErrorAlert/ErrorAlert';
 
 
 interface Props {
@@ -32,6 +31,7 @@ function Products({products}:Props){
   );
 
   const list = useSelector((state: State) => state.cartreducer);
+  const auth = useSelector((state:State) => state.authreducer);
    const router = useRouter();
 
   
@@ -43,7 +43,7 @@ function Products({products}:Props){
 
   const addDataToFavourites = (event:any,obj:Product) => {
     event.preventDefault();
-    const pro = new FavouritesProduct(obj.name, obj.price, 1,obj.img,"Mahesh");
+    const pro = new FavouritesProduct(obj.name, obj.price, 1,obj.img,auth.user);
     Axios.post("favouritesproduct",pro)
       .then((response) => {
         // setLoading(false);

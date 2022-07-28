@@ -1,36 +1,3 @@
-export const navbar = [
-  {
-    id: "home",
-    name: "home",
-    url: "/",
-  },
-  {
-    id: "about",
-    name: "about",
-    url: "/about",
-  },
-  {
-    id: "orders",
-    name: "orders",
-    url: "/orders",
-  },
-  {
-    id: "favorites",
-    name: "favourites",
-    url: "/favorites",
-  },
-  {
-    id: "login",
-    name: "Login",
-    url: "/login",
-  },
-  {
-    id:"logout",
-    name:"Logout",
-    url:"/"
-  }
-];
-
 export const products = [
   {
     img: "img/dish-1.png",

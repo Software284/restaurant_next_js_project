@@ -33,6 +33,8 @@ const ContactData : React.FC<Props> = (props) => {
 
   const [formValidation,setFormValidation] = useState<boolean>(false);
 
+   const auth_reducer = useSelector((state: State) => state.authreducer);
+
   const dispatch = useDispatch();
   const { resetItem } = bindActionCreators(
     ActionCreators,
@@ -47,19 +49,19 @@ const ContactData : React.FC<Props> = (props) => {
 
 
   const [MyForm, setMyForm]: any = useState({
-    name: {
-      elementType: "input",
-      elementConfig: {
-        type: "text",
-        placeholder: "Your Name",
-      },
-      value: "",
-      validation: {
-        required: true,
-      },
-      valid: false,
-      touched: false,
-    },
+    // name: {
+    //   elementType: "input",
+    //   elementConfig: {
+    //     type: "text",
+    //     placeholder: "Your Name",
+    //   },
+    //   value: auth_reducer.user,
+    //   validation: {
+    //     required: true,
+    //   },
+    //   valid: false,
+    //   touched: false,
+    // },
     street: {
       elementType: "input",
       elementConfig: {
@@ -93,7 +95,7 @@ const ContactData : React.FC<Props> = (props) => {
       elementType: "input",
       elementConfig: {
         type: "text",
-        placeholder: "Your Country",
+        placeholder: "Your District",
       },
       value: "",
       validation: {
@@ -114,20 +116,20 @@ const ContactData : React.FC<Props> = (props) => {
       validation: {},
       valid: true,
     },
-    email: {
-      elementType: "input",
-      elementConfig: {
-        type: "email",
-        placeholder: "Your Email",
-      },
-      value: "",
-      validation: {
-        required: true,
-        isEmail: true,
-      },
-      valid: false,
-      touched: false,
-    },
+    // email: {
+    //   elementType: "input",
+    //   elementConfig: {
+    //     type: "email",
+    //     placeholder: "Your Email",
+    //   },
+    //   value: auth_reducer.user.concat("@gmail.com"),
+    //   validation: {
+    //     required: true,
+    //     isEmail: true,
+    //   },
+    //   valid: false,
+    //   touched: false,
+    // },
   });
 
  
@@ -161,7 +163,12 @@ const ContactData : React.FC<Props> = (props) => {
 
 
     const add = new Address(formData.street,formData.zipcode,formData.district);
-    const customer = new Customer(formData.name,formData.email,formData.gender,add);
+    const customer = new Customer(
+      auth_reducer.user,
+      auth_reducer.user.concat("@gmail.com"),
+      formData.gender,
+      add
+    );
     const or = new OrderDemo(price,data,customer);
 
     const orderdemo = or;
@@ -169,7 +176,12 @@ const ContactData : React.FC<Props> = (props) => {
 
 
   Axios
-    .post<OrderDemo>("order", orderdemo)
+    .post<OrderDemo>("order", orderdemo, {
+      headers: {
+           'Authorization': "Bearer" + auth_reducer.token,
+         },
+        }
+    )
     .then((response) => {
       resetItem();
       setLoading(false);

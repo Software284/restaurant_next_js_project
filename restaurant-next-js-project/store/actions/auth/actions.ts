@@ -10,6 +10,10 @@ interface SET_USER {
   payload: string;
 }
 
-export type TokenAction = SET_TOKEN | SET_USER;
+interface SET_LOGOUT {
+  type: ActionTypes.AUTH_LOGOUT;
+}
+
+export type TokenAction = SET_TOKEN | SET_USER | SET_LOGOUT;
 
 

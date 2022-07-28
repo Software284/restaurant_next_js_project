@@ -109,10 +109,19 @@ const Authentication = () => {
   };
 
     const dispatch = useDispatch();
-    const { settoken,setuser } = bindActionCreators(
+    const { settoken,setuser,logout} = bindActionCreators(
       ActionCreators,
       dispatch
     );
+
+    const checkAuthTimeout = (expiresIn: string) => {
+      console.log("I am Here="+expiresIn);
+      setTimeout(() => {
+        logout();
+      }, +expiresIn);
+    };
+
+
 
     const auth_reducer = useSelector((state: State) => state.authreducer);
 
@@ -122,6 +131,7 @@ const Authentication = () => {
     for(let key in AuthForm){
       user_obj[key] = AuthForm[key].value;
     }
+
     const user = new User(user_obj.username,user_obj.password);
     setLoading(true);
     
@@ -131,9 +141,11 @@ const Authentication = () => {
         .post(url, user)
         .then((res) => {
           setLoading(false);
+          console.log(JSON.stringify(res.headers));
           const full_token = res.headers.authorization;
           const final_token = full_token.replace("Bearer", "");
           const user = res.headers.user;
+          checkAuthTimeout(res.headers.expiresin);
           setuser(user);
           settoken(final_token);
           Router.push("/");
@@ -158,7 +170,14 @@ const Authentication = () => {
              .then((res) => {
                setLoading(false);
                const full_token = res.headers.authorization;
-               const final_token = full_token.replace("Bearer", "");
+               const final_token = full_token.replace("Bearer ", "");
+               const user = res.headers.user;
+               const expirationDate:any = new Date(new Date().getTime() + (parseInt(res.headers.expiresin) * 1000));
+               localStorage.setItem('token', final_token);
+               localStorage.setItem('expirationDate', expirationDate);
+               localStorage.setItem('user',user);
+               checkAuthTimeout(res.headers.expiresin);
+               setuser(user);
                settoken(final_token);
                Router.push("/");
              })
