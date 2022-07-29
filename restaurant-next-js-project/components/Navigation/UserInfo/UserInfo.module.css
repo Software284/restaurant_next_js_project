@@ -1,0 +1,29 @@
+.Username {
+  font-size: 20px;
+  padding: 5px 10px;
+}
+
+.Username span {
+  font-family: inherit;
+  margin-left: 5px;
+}
+
+.Username i {
+  display: inline-block;
+  cursor: pointer;
+  margin-left: .5rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  width: 4.5rem;
+  text-align: center;
+  font-size: 1.7rem;
+  color: var(--black);
+  border-radius: 50%;
+  background: #eee;
+}
+
+.Username i:hover {
+  color: #fff;
+  background: var(--green);
+}
+/*# sourceMappingURL=UserInfo.module.css.map */

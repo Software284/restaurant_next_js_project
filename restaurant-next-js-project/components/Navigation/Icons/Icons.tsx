@@ -1,21 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import classes from './Icons.module.css';
 import { useState } from "react";
-import {useSelector,useDispatch } from "react-redux";
+import {useSelector} from "react-redux";
 import { faBars,faSearch,faShoppingCart,faHeart,faUser } from "@fortawesome/free-solid-svg-icons";
 import { State } from "../../../store/reducers/rootReducers";
 import OrderSummary from "../../../containers/Order-Summary/OrderSummary";
 import Modal from "../../UI/Modal/Modal";
 import ContactData from "../../../containers/ContactData/ContactData";
+import { FavouritesProduct } from "../../../models/classes/FavouritesProduct";
+import { cartreducer } from "../../../store/reducers/cartReducer";
 
 const Icons = () => {
 
   const [modal, setModal] = useState(false);
-  const list = useSelector((state: State) => state.cartreducer);
-
   const [switching, setSwitching] = useState<boolean>(false);
+  const[data,setData]:any = useState([]);
 
-   const auth_reducer = useSelector((state: State) => state.authreducer);
+  const list = useSelector((state: State) => state.cartreducer);
+  const auth_reducer = useSelector((state: State) => state.authreducer);
+  const fav_reducer = useSelector((state: State) => state.favouritereducer);
+
+
+   
 
 
 
@@ -23,9 +29,17 @@ const Icons = () => {
     setModal(false);
   }
 
-  const modalOpenHandler = () => {
+  const modalOpenHandler = (event:any,redux_type:string) => {
+    if(redux_type === "fav"){
+      setData(fav_reducer.favourites);
+    }
+    else {
+      setData(list.carts);
+    }
     setModal(true);
   }
+
+
 
   const purchaseContinuedHandler = () => {
     setSwitching(!switching);
@@ -41,6 +55,7 @@ const Icons = () => {
       <OrderSummary
         modalClosed={modalClosedHandler}
         purchaseContinued={purchaseContinuedHandler}
+        product ={data}
       />
     );
   }
@@ -61,7 +76,7 @@ const Icons = () => {
           <i>
             <FontAwesomeIcon icon={faSearch} />
           </i>
-          <i className={classes.Shopping} onClick={modalOpenHandler}>
+          <i className={classes.Shopping} onClick={(event) => modalOpenHandler(event,"cart")}>
             <FontAwesomeIcon icon={faShoppingCart}></FontAwesomeIcon>
             {list.carts.length > 0 ? (
               <span className={classes.Badge}>{list.carts.length}</span>
@@ -70,12 +85,16 @@ const Icons = () => {
             )}
             <div className={classes.CartModal}></div>
           </i>
-          <i>
+          <i className={classes.Shopping} onClick={(event) => modalOpenHandler(event,"fav")}>
             <FontAwesomeIcon icon={faHeart} />
-          </i>
-          <i>
-            <FontAwesomeIcon icon={faUser} />
-            <span>{auth_reducer.user}:{auth_reducer.token}</span>
+            {fav_reducer.favourites.length > 0 ? (
+              <span className={classes.Badge}>
+                {fav_reducer.favourites.length}
+              </span>
+            ) : (
+              ""
+            )}
+            <div className={classes.CartModal}></div>
           </i>
         </div>
       </>

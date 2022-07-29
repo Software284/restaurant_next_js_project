@@ -4,12 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faEye,faStar } from '@fortawesome/free-solid-svg-icons';
 import {Product} from '../../models/Product';
-import { useState } from 'react';
 import { CartProduct } from '../../models/classes/CartProduct';
 import { FavouritesProduct } from '../../models/classes/FavouritesProduct';
 import Axios from '../../axios';
 import { useDispatch, useSelector } from "react-redux";
 import * as ActionCreators from "../../store/actions/cart/action-creators";
+import * as FavouritesActionCreators from "../../store/actions/favourites/action-creators";
 import { bindActionCreators } from "redux";
 import { State } from "../../store/reducers/rootReducers";
 import {useRouter} from 'next/router';
@@ -22,16 +22,16 @@ interface Props {
 
 function Products({products}:Props){
 
-  const [loading, setLoading] = useState<boolean>(true);
-
   const dispatch = useDispatch();
   const { addItem} = bindActionCreators(
     ActionCreators,
     dispatch
   );
+  const { addFavouriteItem } = bindActionCreators(FavouritesActionCreators, dispatch);
 
   const list = useSelector((state: State) => state.cartreducer);
   const auth = useSelector((state:State) => state.authreducer);
+  const favourites = useSelector((state: State) => state.favouritereducer);
    const router = useRouter();
 
   
@@ -43,12 +43,22 @@ function Products({products}:Props){
 
   const addDataToFavourites = (event:any,obj:Product) => {
     event.preventDefault();
-    const pro = new FavouritesProduct(obj.name, obj.price, 1,obj.img,auth.user);
-    Axios.post("favouritesproduct",pro)
-      .then((response) => {
-        // setLoading(false);
-      })
-      .catch((error) => {});
+     const pro_for_auth = new FavouritesProduct(
+       obj.id,
+       obj.name,
+       obj.price,
+       1,
+       obj.img,
+       auth.user
+     );
+    if(auth.token){
+      Axios.post("favouritesproduct", pro_for_auth)
+        .then((response) => {
+          // setLoading(false);
+        })
+        .catch((error) => {});
+    }
+    addFavouriteItem(pro_for_auth);
   }
 
   const viewProductHandler = (event:any,id:number) => {

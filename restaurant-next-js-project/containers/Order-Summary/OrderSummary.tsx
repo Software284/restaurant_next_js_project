@@ -2,34 +2,32 @@
 import classes from './OrderSummary.module.css';
 import Button from '../../components/UI/Button/Button';
 import { useState,useEffect } from 'react';
-import { useDispatch, useSelector } from "react-redux";
-import { State } from "../../store/reducers/rootReducers";
-import * as ActionCreators from "../../store/actions/cart/action-creators";
-import { bindActionCreators } from "redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faTrashAlt} from '@fortawesome/free-solid-svg-icons'
+import {FavouritesProduct} from '../../models/classes/FavouritesProduct';
 
 interface Props{
   modalClosed: () => void;
   purchaseContinued: () => void;
+  product:FavouritesProduct[]
 }
 
 function OrderSummary (props:Props) {
 
     const [price, setPrice] = useState<number>(0);
 
-    const dispatch = useDispatch();
-    const { addItem, removeItem, decreamentItem } = bindActionCreators(
-      ActionCreators,
-      dispatch
-    );
+    // const dispatch = useDispatch();
+    // const { addItem, removeItem, decreamentItem } = bindActionCreators(
+    //   ActionCreators,
+    //   dispatch
+    // );
 
-    const list = useSelector((state: State) => state.cartreducer);
+    // const list = useSelector((state: State) => state.cartreducer);
 
      // eslint-disable-next-line react-hooks/exhaustive-deps
      const total = () => {
        let price:number = 0;
-       list.carts.map((ele, k) => {
+       props.product.map((ele, k) => {
          price += ele.price * ele.quantity;
        });
        setPrice(price);
@@ -50,7 +48,7 @@ function OrderSummary (props:Props) {
             </tr>
           </thead>
           <tbody>
-            {list.carts.map((data, index) => {
+            {props.product.map((data, index) => {
               return (
                 <>
                   <tr>
@@ -71,7 +69,6 @@ function OrderSummary (props:Props) {
                           fontSize: 20,
                           cursor: "pointer",
                         }}
-                        onClick={() => removeItem(data.id)}
                       >
                         <FontAwesomeIcon icon={faTrashAlt}></FontAwesomeIcon>
                       </p>

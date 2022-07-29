@@ -6,12 +6,17 @@ export class FavouritesProduct {
   image: string;
   username: string;
 
-  constructor(name:string,price:number,quantity:number,image:string,username:string){
+  constructor(id:number,name:string,price:number,quantity:number,image:string,username:string){
+    this.id = id;
     this.name = name;
     this.price= price;
     this.quantity = quantity;
     this.image = image;
     this.username = username;
+  }
+
+  set setId(id:number){
+    this.id = id;
   }
  
   get getName(){

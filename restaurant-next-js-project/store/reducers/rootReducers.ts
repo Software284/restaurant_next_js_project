@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
 import { cartreducer } from "./cartReducer";
 import { authreducer } from "./authReducer";
+import { favouritereducer } from "./favouriteReducer";
 
 const rootreducer = combineReducers({
   cartreducer,
-  authreducer
+  authreducer,
+  favouritereducer
 });
 
 export default rootreducer;
