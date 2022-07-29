@@ -115,7 +115,6 @@ const Authentication = () => {
     );
 
     const checkAuthTimeout = (expiresIn: string) => {
-      console.log("I am Here="+expiresIn);
       setTimeout(() => {
         logout();
       }, +expiresIn);
@@ -141,10 +140,15 @@ const Authentication = () => {
         .post(url, user)
         .then((res) => {
           setLoading(false);
-          console.log(JSON.stringify(res.headers));
           const full_token = res.headers.authorization;
           const final_token = full_token.replace("Bearer", "");
           const user = res.headers.user;
+          const expirationDate:any = new Date(
+            new Date().getTime() + (parseInt(res.headers.expiresin))
+          );
+          localStorage.setItem("token", final_token);
+          localStorage.setItem("expirationDate", expirationDate);
+          localStorage.setItem("user", user);
           checkAuthTimeout(res.headers.expiresin);
           setuser(user);
           settoken(final_token);

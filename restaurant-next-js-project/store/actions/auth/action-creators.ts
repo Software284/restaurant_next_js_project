@@ -22,10 +22,9 @@ export const setuser = (user: string) => {
 };
 
 export const logout = () => {
-   console.log("Iam Here at local storage=" + localStorage.getItem("token"));
-  //  localStorage.removeItem('token');
-  //  localStorage.removeItem('expirationDate');
-  //  localStorage.removeItem('user');
+   localStorage.removeItem('token');
+   localStorage.removeItem('expirationDate');
+   localStorage.removeItem('user');
    return (dispatch: Dispatch<TokenAction>) => {
     dispatch({
       type: ActionTypes.AUTH_LOGOUT,
@@ -33,24 +32,39 @@ export const logout = () => {
   };
 };
 
+ const checkAuthTimeout = (expiresIn: number) => {
+  console.log('Hello token will be expires in='+expiresIn);
+   setTimeout(() => {
+    return (dispatch: any) => {
+      dispatch(logout());
+    };
+   }, expiresIn);
+ };
+
 export const authCheckState = () => {
-  const token = localStorage.getItem('token');
-  const user = localStorage.getItem('user')!;
-  if(!token){
-    logout();
-  }
-  else {
-    const expirationDate = new Date(localStorage.getItem('expirationDate')!);
-    if(expirationDate > new Date()){
-      logout();
-    }
-    else {
-       settoken(token);
-       setuser(user);
-    }
-   
-  }
+   console.log("I am here");
+   const token = localStorage.getItem("token");
+   const user = localStorage.getItem("user")!;
+   if (!token) {
+      return (dispatch:any) => {
+        dispatch(logout());
+      };
+   } else {
+     
+     const expirationDate = new Date(localStorage.getItem("expirationDate")!);
+     if (new Date() > expirationDate) {
+       return (dispatch: any) => {
+         dispatch(logout());
+       };
+     } else {
+       checkAuthTimeout((expirationDate.getTime() - new Date().getTime())/1000);
+       return (dispatch: Dispatch<TokenAction>) => {
+         dispatch({
+           type: ActionTypes.GET_LOCAL_STORAGE_DATA,
+           payload: token,
+           user: user,
+         });
+       };
+     }
+}
 };
-
-
-

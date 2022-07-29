@@ -25,6 +25,11 @@ export const authreducer = (state:DefaultStateI = INIT_STATE, action:TokenAction
       return {
         ...state,token:"",user:""
       }
+    case ActionTypes.GET_LOCAL_STORAGE_DATA:
+      console.log("Hello iam inside reducer");
+      return {
+        ...state,token:action.payload,user:action.user
+      }
     default:
       return state;
   }

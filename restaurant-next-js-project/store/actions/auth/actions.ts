@@ -14,6 +14,16 @@ interface SET_LOGOUT {
   type: ActionTypes.AUTH_LOGOUT;
 }
 
-export type TokenAction = SET_TOKEN | SET_USER | SET_LOGOUT;
+interface GET_LOCAL_STORAGE {
+  type: ActionTypes.GET_LOCAL_STORAGE_DATA;
+  payload:string;
+  user:string;
+}
+
+
+
+
+
+export type TokenAction = SET_TOKEN | SET_USER | SET_LOGOUT | GET_LOCAL_STORAGE;
 
 
